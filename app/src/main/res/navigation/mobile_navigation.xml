@@ -12,14 +12,14 @@
         tools:layout="@layout/fragment_home" />
 
     <fragment
-        android:id="@+id/navigation_dashboard"
-        android:name="com.cs356.mobile.ui.dashboard.DashboardFragment"
-        android:label="@string/title_dashboard"
-        tools:layout="@layout/fragment_dashboard" />
+        android:id="@+id/navigation_create_event"
+        android:name="com.cs356.mobile.ui.event.CreateEventFragment"
+        android:label="@string/title_create_event"
+        tools:layout="@layout/fragment_create_event" />
 
     <fragment
-        android:id="@+id/navigation_notifications"
-        android:name="com.cs356.mobile.ui.notifications.NotificationsFragment"
-        android:label="@string/title_notifications"
-        tools:layout="@layout/fragment_notifications" />
+        android:id="@+id/navigation_calender"
+        android:name="com.cs356.mobile.ui.calender.CalenderFragment"
+        android:label="@string/title_calender"
+        tools:layout="@layout/fragment_calender" />
 </navigation>
