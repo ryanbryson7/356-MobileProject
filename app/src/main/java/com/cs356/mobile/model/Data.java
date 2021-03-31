@@ -38,5 +38,31 @@ public class Data {
         return inProgressEvents;
     }
 
-    //TODO: Make it possible to confirm an inprogress event and vice versa
+    public void confirmEvent(Event eventToConfirm) {
+        for (int i = 0; i < inProgressEvents.size(); ++i) {
+            if (eventToConfirm.equals(inProgressEvents.get(i))) {
+                confirmedEvents.add(eventToConfirm);
+                inProgressEvents.remove(i);
+                return;
+            }
+        }
+
+        // Couldn't find event to confirm (This shouldn't ever happen)
+        System.out.println("ERROR: Couldn't find inProgress Event to confirm");
+        return;
+    }
+
+    public void unconfirmEvent(Event eventToUnconfirm) {
+        for (int i = 0; i < confirmedEvents.size(); ++i) {
+            if (eventToUnconfirm.equals(confirmedEvents.get(i))) {
+                inProgressEvents.add(eventToUnconfirm);
+                confirmedEvents.remove(i);
+                return;
+            }
+        }
+
+        // Couldn't find event to unconfirm (This shouldn't ever happen)
+        System.out.println("ERROR: Couldn't find confirmed Event to unconfirm");
+        return;
+    }
 }
