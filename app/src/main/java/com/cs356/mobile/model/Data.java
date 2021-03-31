@@ -37,4 +37,6 @@ public class Data {
     public List<Event> getInProgressEvents() {
         return inProgressEvents;
     }
+
+    //TODO: Make it possible to confirm an inprogress event and vice versa
 }
