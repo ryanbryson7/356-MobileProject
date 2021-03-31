@@ -16,7 +16,7 @@ public class Data {
     private Event defaultInProgressEvent = new Event("Ski at Sundance Resort", "Monday March 8th, 2021", "6:30pm - 9:00pm", "8841", defaultInProgressEventInvitees, true);
     //////////////////////////////////////////////
 
-    public Data() {
+    private Data() {
         confirmedEvents.clear();
         inProgressEvents.clear();
         confirmedEvents.add(defaultConfirmedEvent);
