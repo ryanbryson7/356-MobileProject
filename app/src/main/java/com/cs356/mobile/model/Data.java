@@ -7,6 +7,7 @@ import java.util.List;
 public class Data {
     private List<Event> confirmedEvents = new ArrayList<>();
     private List<Event> inProgressEvents = new ArrayList<>();
+    private static Data instance;
 
     /////////////////DEFAULT DATA/////////////////
     private List<String> defaultConfirmedEventInvitees = new ArrayList<String>(Arrays.asList("Ryan Bryson", "Andrew Bowden"));
@@ -20,6 +21,13 @@ public class Data {
         inProgressEvents.clear();
         confirmedEvents.add(defaultConfirmedEvent);
         inProgressEvents.add(defaultInProgressEvent);
+    }
+
+    public static Data getInstance() {
+        if (instance == null) {
+            instance = new Data();
+        }
+        return instance;
     }
 
     public void addInProgressEvent(Event event) {

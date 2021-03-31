@@ -49,8 +49,10 @@ public class HomeFragment extends Fragment {
     }
 
     private void initializeData() {
-        data = new Data();
+        data = Data.getInstance();
         expandableListData = new HashMap<>();
+
+        // Load data from Data into the expandableListData
         expandableListData.put(getContext().getString(R.string.confirmed_events), data.getConfirmedEvents());
         expandableListData.put(getContext().getString(R.string.in_progress_events), data.getInProgressEvents());
     }
