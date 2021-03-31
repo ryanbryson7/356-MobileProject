@@ -5,7 +5,7 @@
     <string name="title_calender">Calender</string>
     <string name="title_settings">Settings</string>
     <string name="title_notifications">Notifications</string>
-
     <string name="confirmed_events">Confirmed Events</string>
     <string name="in_progress_events">In-Progress Events</string>
+    <string name="event_details">Event Details</string>
 </resources>

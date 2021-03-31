@@ -12,8 +12,8 @@ public class Data {
     /////////////////DEFAULT DATA/////////////////
     private List<String> defaultConfirmedEventInvitees = new ArrayList<String>(Arrays.asList("Ryan Bryson", "Andrew Bowden"));
     private List<String> defaultInProgressEventInvitees = new ArrayList<String>(Arrays.asList("Johnny Test"));
-    private Event defaultConfirmedEvent = new Event("Making a Planning App", "Everyday", "Forever", "Android Studio", defaultConfirmedEventInvitees, false);
-    private Event defaultInProgressEvent = new Event("Ski at Sundance Resort", "Monday March 8th, 2021", "6:30pm - 9:00pm", "8841", defaultInProgressEventInvitees, true);
+    private Event defaultConfirmedEvent = new Event("Making a Planning App", 4, 20, 21, "Forever", "Android Studio", defaultConfirmedEventInvitees, false);
+    private Event defaultInProgressEvent = new Event("Ski at Sundance Resort", 3, 31, 2021, "6:30pm - 9:00pm", "8841", defaultInProgressEventInvitees, true);
     //////////////////////////////////////////////
 
     private Data() {
@@ -72,5 +72,19 @@ public class Data {
         // Couldn't find event to unconfirm (This shouldn't ever happen)
         System.out.println("ERROR: Couldn't find confirmed Event to unconfirm");
         return;
+    }
+
+    public Event findEventByDate(int month, int day, int year) {
+        for (Event event : confirmedEvents) {
+            if (event.getDay() == day && event.getMonth() == month && event.getYear() == year) {
+                return event;
+            }
+        }
+        for (Event event : inProgressEvents) {
+            if (event.getDay() == day && event.getMonth() == month && event.getYear() == year) {
+                return event;
+            }
+        }
+        return null;
     }
 }
