@@ -7,6 +7,7 @@ import java.util.List;
 public class Data {
     private List<Event> confirmedEvents = new ArrayList<>();
     private List<Event> inProgressEvents = new ArrayList<>();
+    private static Data instance;
 
     /////////////////DEFAULT DATA/////////////////
     private List<String> defaultConfirmedEventInvitees = new ArrayList<String>(Arrays.asList("Ryan Bryson", "Andrew Bowden"));
@@ -15,11 +16,18 @@ public class Data {
     private Event defaultInProgressEvent = new Event("Ski at Sundance Resort", "Monday March 8th, 2021", "6:30pm - 9:00pm", "8841", defaultInProgressEventInvitees, true);
     //////////////////////////////////////////////
 
-    public Data() {
+    private Data() {
         confirmedEvents.clear();
         inProgressEvents.clear();
         confirmedEvents.add(defaultConfirmedEvent);
         inProgressEvents.add(defaultInProgressEvent);
+    }
+
+    public static Data getInstance() {
+        if (instance == null) {
+            instance = new Data();
+        }
+        return instance;
     }
 
     public void addInProgressEvent(Event event) {
@@ -38,5 +46,31 @@ public class Data {
         return inProgressEvents;
     }
 
-    //TODO: Make it possible to confirm an inprogress event and vice versa
+    public void confirmEvent(Event eventToConfirm) {
+        for (int i = 0; i < inProgressEvents.size(); ++i) {
+            if (eventToConfirm.equals(inProgressEvents.get(i))) {
+                confirmedEvents.add(eventToConfirm);
+                inProgressEvents.remove(i);
+                return;
+            }
+        }
+
+        // Couldn't find event to confirm (This shouldn't ever happen)
+        System.out.println("ERROR: Couldn't find inProgress Event to confirm");
+        return;
+    }
+
+    public void unconfirmEvent(Event eventToUnconfirm) {
+        for (int i = 0; i < confirmedEvents.size(); ++i) {
+            if (eventToUnconfirm.equals(confirmedEvents.get(i))) {
+                inProgressEvents.add(eventToUnconfirm);
+                confirmedEvents.remove(i);
+                return;
+            }
+        }
+
+        // Couldn't find event to unconfirm (This shouldn't ever happen)
+        System.out.println("ERROR: Couldn't find confirmed Event to unconfirm");
+        return;
+    }
 }

@@ -81,7 +81,7 @@ public class Event {
                 + "\t- Time: " + time + "\n";
     }
 
-    // Thought I was gonna need this but I probably won't now
+    // Useful for confirming/uncofirming events
     @Override
     public boolean equals(Object o) {
         if (o == null) {
