@@ -7,16 +7,18 @@ import java.util.List;
 public class Data {
     private List<Event> confirmedEvents = new ArrayList<>();
     private List<Event> inProgressEvents = new ArrayList<>();
+    private Event selectedEvent;
     private static Data instance;
 
     /////////////////DEFAULT DATA/////////////////
     private List<String> defaultConfirmedEventInvitees = new ArrayList<String>(Arrays.asList("Ryan Bryson", "Andrew Bowden"));
     private List<String> defaultInProgressEventInvitees = new ArrayList<String>(Arrays.asList("Johnny Test"));
     private Event defaultConfirmedEvent = new Event("Making a Planning App", 4, 20, 21, "Forever", "Android Studio", defaultConfirmedEventInvitees, false);
-    private Event defaultInProgressEvent = new Event("Ski at Sundance Resort", 3, 31, 2021, "6:30pm - 9:00pm", "8841", defaultInProgressEventInvitees, true);
+    private Event defaultInProgressEvent = new Event("Ski at Sundance Resort", 3, 31, 2021, "6:30pm - 9:00pm", "Provo, Utah", defaultInProgressEventInvitees, true);
     //////////////////////////////////////////////
 
     private Data() {
+        selectedEvent = new Event();
         confirmedEvents.clear();
         inProgressEvents.clear();
         confirmedEvents.add(defaultConfirmedEvent);
@@ -86,5 +88,13 @@ public class Data {
             }
         }
         return null;
+    }
+
+    public Event getSelectedEvent() {
+        return selectedEvent;
+    }
+
+    public void setSelectedEvent(Event selectedEvent) {
+        this.selectedEvent = selectedEvent;
     }
 }

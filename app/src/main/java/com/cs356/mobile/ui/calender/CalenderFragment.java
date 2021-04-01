@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.CalendarView;
 import android.widget.TextView;
 
@@ -12,18 +13,27 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.cs356.mobile.MainActivity;
 import com.cs356.mobile.R;
 import com.cs356.mobile.model.Data;
 import com.cs356.mobile.model.Event;
+import com.cs356.mobile.ui.event.EventDetailsFragment;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 public class CalenderFragment extends Fragment {
     CalendarView calendarView;
+    TextView pageTitle;
+    TextView activityText;
+    TextView dateText;
+    TextView timeText;
+    TextView locationText;
+    Button moreDetailsButton;
     Event currentEvent;
     int currentDay;
     int currentMonth;
@@ -36,6 +46,13 @@ public class CalenderFragment extends Fragment {
 
 
         calendarView = view.findViewById(R.id.calender_widget);
+        activityText = view.findViewById(R.id.activity_text);
+        dateText = view.findViewById(R.id.date_text);
+        timeText = view.findViewById(R.id.time_text);
+        locationText = view.findViewById(R.id.location_text);
+        moreDetailsButton = view.findViewById(R.id.more_details_button);
+        pageTitle = view.findViewById(R.id.page_title);
+
         LocalDate localDate = LocalDate.now();
 
         currentDay = localDate.getDayOfMonth();
@@ -43,24 +60,45 @@ public class CalenderFragment extends Fragment {
         currentYear = localDate.getYear();
 
         currentEvent = Data.getInstance().findEventByDate(currentMonth, currentDay, currentYear);
-        if (currentEvent != null) {
-            setEventDetails();
-        }
+        setEventDetails();
+
         calendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             @Override
             public void onSelectedDayChange(@NonNull CalendarView view, int year, int month, int dayOfMonth) {
-                month += month;
+                month += 1;
                 currentEvent = Data.getInstance().findEventByDate(month, dayOfMonth, year);
-
-                if (currentEvent != null) {
-                    setEventDetails();
-                }
+                setEventDetails();
             }
         });
+
+        moreDetailsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FragmentManager fragmentManager = getParentFragmentManager();
+                fragmentManager.beginTransaction().replace(R.id.fragment_holder, new EventDetailsFragment()).commit();
+                ((MainActivity) getActivity()).setTitleText("Event Details");
+                Data.getInstance().setSelectedEvent(currentEvent);
+            }
+        });
+
         return view;
     }
 
     private void setEventDetails() {
-
+        if (currentEvent != null) {
+            activityText.setText("Activity: " + currentEvent.getTitle());
+            dateText.setText("Date: " + currentEvent.getMonth() + "/" + currentEvent.getDay() +"/" +
+                    currentEvent.getYear());
+            timeText.setText("Time: " + currentEvent.getTime());
+            locationText.setText("Location: " + currentEvent.getLocation());
+            moreDetailsButton.setVisibility(View.VISIBLE);
+        }
+        else {
+            activityText.setText("No Current Events For This Day");
+            dateText.setText("");
+            timeText.setText("");
+            locationText.setText("");
+            moreDetailsButton.setVisibility(View.INVISIBLE);
+        }
     }
 }

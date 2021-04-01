@@ -7,5 +7,6 @@
     <string name="title_notifications">Notifications</string>
     <string name="confirmed_events">Confirmed Events</string>
     <string name="in_progress_events">In-Progress Events</string>
-    <string name="event_details">Event Details</string>
+    <string name="event_details">Event Details:</string>
+    <string name="more_details">More Details</string>
 </resources>
