@@ -13,7 +13,8 @@ public class Data {
     /////////////////DEFAULT DATA/////////////////
     private List<String> defaultConfirmedEventInvitees = new ArrayList<String>(Arrays.asList("Ryan Bryson", "Andrew Bowden"));
     private List<String> defaultInProgressEventInvitees = new ArrayList<String>(Arrays.asList("Johnny Test"));
-    private Event defaultConfirmedEvent = new Event("Making a Planning App", 4, 20, 21, "Forever", "Android Studio", defaultConfirmedEventInvitees, false);
+    private Event defaultConfirmedEvent1 = new Event("Making a Planning App", 4, 2, 2021, "Forever", "Android Studio", defaultConfirmedEventInvitees, false);
+    private Event defaultConfirmedEvent2 = new Event("Celebrating Last Day of Class", 4, 14, 2021, "7:00pm", "Apt. 320", defaultConfirmedEventInvitees, false);
     private Event defaultInProgressEvent = new Event("Ski at Sundance Resort", 3, 31, 2021, "6:30pm - 9:00pm", "Provo, Utah", defaultInProgressEventInvitees, true);
     //////////////////////////////////////////////
 
@@ -21,7 +22,8 @@ public class Data {
         selectedEvent = new Event();
         confirmedEvents.clear();
         inProgressEvents.clear();
-        confirmedEvents.add(defaultConfirmedEvent);
+        confirmedEvents.add(defaultConfirmedEvent1);
+        confirmedEvents.add(defaultConfirmedEvent2);
         inProgressEvents.add(defaultInProgressEvent);
     }
 
