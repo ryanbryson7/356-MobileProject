@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ExpandableListAdapter;
 import android.widget.ExpandableListView;
 import android.widget.TextView;
 
@@ -16,6 +17,7 @@ import androidx.lifecycle.ViewModelProvider;
 import com.cs356.mobile.R;
 import com.cs356.mobile.model.Data;
 import com.cs356.mobile.model.Event;
+import com.cs356.mobile.utils.EventListAdapter;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -26,6 +28,7 @@ public class HomeFragment extends Fragment {
     private HomeViewModel homeViewModel;
 
     private ExpandableListView expandableListView;
+    private ExpandableListAdapter expandableListAdapter;
     private Data data;
     private HashMap<String, List<Event>> expandableListData;
 
@@ -41,9 +44,13 @@ public class HomeFragment extends Fragment {
                 textView.setText(s);
             }
         });
-
         initializeData();
-        expandableListView = textView.findViewById(R.id.expandable_event_lists);
+
+
+        expandableListView = root.findViewById(R.id.expandable_event_lists);
+
+        expandableListAdapter = new EventListAdapter(this.getContext(), expandableListData);
+        expandableListView.setAdapter(expandableListAdapter);
 
         return root;
     }

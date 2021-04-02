@@ -47,6 +47,9 @@ public class Event {
     public void setDay(int day) {
         this.day = day;
     }
+    public String getDateAsString() {
+        return "" + month + "/" + day + "/" + year;
+    }
 
     public int getMonth() {
         return month;
