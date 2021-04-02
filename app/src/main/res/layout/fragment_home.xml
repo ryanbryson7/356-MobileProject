@@ -12,6 +12,7 @@
 <!--        app:layout_constraintBottom_toTopOf="parent">-->
 
         <ExpandableListView
+            android:theme="@style/menuItemTheme"
             android:id="@+id/expandable_event_lists"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
