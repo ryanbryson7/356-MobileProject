@@ -18,8 +18,8 @@
         tools:layout="@layout/fragment_create_event" />
 
     <fragment
-        android:id="@+id/navigation_calender"
-        android:name="com.cs356.mobile.ui.calender.CalenderFragment"
-        android:label="@string/title_calender"
-        tools:layout="@layout/fragment_calender" />
+        android:id="@+id/navigation_calendar"
+        android:name="com.cs356.mobile.ui.calendar.CalendarFragment"
+        android:label="@string/title_calendar"
+        tools:layout="@layout/fragment_calendar" />
 </navigation>
