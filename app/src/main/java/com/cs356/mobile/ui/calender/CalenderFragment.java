@@ -51,7 +51,7 @@ public class CalenderFragment extends Fragment {
         timeText = view.findViewById(R.id.time_text);
         locationText = view.findViewById(R.id.location_text);
         moreDetailsButton = view.findViewById(R.id.more_details_button);
-        pageTitle = view.findViewById(R.id.page_title);
+        //pageTitle = view.findViewById(R.id.page_title);
 
         LocalDate localDate = LocalDate.now();
 
