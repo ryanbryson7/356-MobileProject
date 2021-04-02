@@ -10,7 +10,7 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
-import com.cs356.mobile.ui.calender.CalenderFragment;
+import com.cs356.mobile.ui.calendar.CalendarFragment;
 import com.cs356.mobile.ui.event.CreateEventFragment;
 import com.cs356.mobile.ui.home.HomeFragment;
 import com.cs356.mobile.ui.notifications.NotificationsFragment;
@@ -63,9 +63,9 @@ public class MainActivity extends AppCompatActivity {
                         currentFragment = new CreateEventFragment();
                         pageTitle.setText("Create Event");
                         break;
-                    case R.id.navigation_calender:
-                        currentFragment = new CalenderFragment();
-                        pageTitle.setText("Calender");
+                    case R.id.navigation_calendar:
+                        currentFragment = new CalendarFragment();
+                        pageTitle.setText("Calendar");
                         break;
                 }
                 fragmentManager.beginTransaction().replace(R.id.fragment_holder, currentFragment).commit();
@@ -103,7 +103,7 @@ public class MainActivity extends AppCompatActivity {
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
 //        AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
-//                R.id.navigation_home, R.id.navigation_create_event, R.id.navigation_calender)
+//                R.id.navigation_home, R.id.navigation_create_event, R.id.navigation_calendar)
 //                .build();
 //        NavController navController = Navigation.findNavController(this, R.id.fragment_holder);
 //        NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);

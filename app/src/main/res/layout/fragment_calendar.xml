@@ -4,10 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.calender.CalenderFragment">
+    tools:context=".ui.calendar.CalendarFragment">
 
     <CalendarView
+<<<<<<< HEAD:app/src/main/res/layout/fragment_calender.xml
         android:id="@+id/calender_widget"
+=======
+        android:layout_marginTop="-100dp"
+        android:id="@+id/calendar_widget"
+>>>>>>> 7a0784d9a2f4698704372e581e4bad2f7ff7f045:app/src/main/res/layout/fragment_calendar.xml
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="-100dp"
@@ -21,7 +26,7 @@
         android:layout_height="1dp"
         android:layout_margin="10dp"
         android:background="@android:color/darker_gray"
-        app:layout_constraintBottom_toBottomOf="@+id/calender_widget" />
+        app:layout_constraintBottom_toBottomOf="@+id/calendar_widget" />
 
     <LinearLayout
         android:id="@+id/linearLayout"
@@ -33,7 +38,7 @@
         android:padding="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/calender_widget">
+        app:layout_constraintTop_toBottomOf="@+id/calendar_widget">
 
         <TextView
             android:id="@+id/event_details_text"

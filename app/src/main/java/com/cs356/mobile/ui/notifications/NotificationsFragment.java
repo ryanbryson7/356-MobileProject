@@ -16,7 +16,7 @@ import com.cs356.mobile.R;
 
 public class NotificationsFragment extends Fragment {
 
-    //private CalenderViewModel mCalenderViewModel;
+    //private CalendarViewModel mCalendarViewModel;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -24,11 +24,11 @@ public class NotificationsFragment extends Fragment {
 
         return view;
     }
-//      // mCalenderViewModel =
-//           //     new ViewModelProvider(this).get(CalenderViewModel.class);
-//        View root = inflater.inflate(R.layout.fragment_calender, container, false);
+//      // mCalendarViewModel =
+//           //     new ViewModelProvider(this).get(CalendarViewModel.class);
+//        View root = inflater.inflate(R.layout.fragment_calendar, container, false);
 //        final TextView textView = root.findViewById(R.id.text_notifications);
-//        mCalenderViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
+//        mCalendarViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
 //            @Override
 //            public void onChanged(@Nullable String s) {
 //                textView.setText(s);

@@ -1,4 +1,4 @@
-package com.cs356.mobile.ui.calender;
+package com.cs356.mobile.ui.calendar;
 
 import android.os.Build;
 import android.os.Bundle;
@@ -10,12 +10,9 @@ import android.widget.CalendarView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProvider;
 
 import com.cs356.mobile.MainActivity;
 import com.cs356.mobile.R;
@@ -24,9 +21,8 @@ import com.cs356.mobile.model.Event;
 import com.cs356.mobile.ui.event.EventDetailsFragment;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 
-public class CalenderFragment extends Fragment {
+public class CalendarFragment extends Fragment {
     CalendarView calendarView;
     TextView pageTitle;
     TextView activityText;
@@ -42,10 +38,10 @@ public class CalenderFragment extends Fragment {
     @RequiresApi(api = Build.VERSION_CODES.O)
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_calender, container, false);
+        View view = inflater.inflate(R.layout.fragment_calendar, container, false);
 
 
-        calendarView = view.findViewById(R.id.calender_widget);
+        calendarView = view.findViewById(R.id.calendar_widget);
         activityText = view.findViewById(R.id.activity_text);
         dateText = view.findViewById(R.id.date_text);
         timeText = view.findViewById(R.id.time_text);
