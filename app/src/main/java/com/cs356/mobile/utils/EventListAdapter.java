@@ -6,9 +6,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import androidx.fragment.app.FragmentManager;
+
+import com.cs356.mobile.MainActivity;
 import com.cs356.mobile.R;
+import com.cs356.mobile.model.Data;
 import com.cs356.mobile.model.Event;
+import com.cs356.mobile.ui.event.EventDetailsFragment;
 
 import java.util.HashMap;
 import java.util.List;
@@ -95,6 +101,14 @@ public class EventListAdapter extends BaseExpandableListAdapter {
         eventTitleView.setText(event.getTitle());
         eventDateView.setText(event.getDateAsString());
         eventTimeView.setText(event.getTime());
+
+        convertView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //TODO: navigate to event details page
+                Toast.makeText(context, "navigate to event details " + event.getTitle(), Toast.LENGTH_SHORT).show();
+            }
+        });
 
         return convertView;
     }
