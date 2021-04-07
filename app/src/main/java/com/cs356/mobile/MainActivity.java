@@ -3,8 +3,6 @@ package com.cs356.mobile;
 import android.annotation.SuppressLint;
 import android.app.ActionBar;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
@@ -14,7 +12,7 @@ import com.cs356.mobile.ui.calendar.CalendarFragment;
 import com.cs356.mobile.ui.event.CreateEventFragment;
 import com.cs356.mobile.ui.home.HomeFragment;
 import com.cs356.mobile.ui.notifications.NotificationsFragment;
-import com.cs356.mobile.ui.settings.SettingsFragment;
+import com.cs356.mobile.ui.profile.ProfileFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import androidx.annotation.NonNull;
@@ -37,7 +35,11 @@ public class MainActivity extends AppCompatActivity {
 
         //hiding default app icon
         androidx.appcompat.app.ActionBar actionBar = getSupportActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(false);
+        actionBar.setDisplayShowCustomEnabled(true);
         actionBar.setDisplayShowHomeEnabled(false);
+        actionBar.setDisplayShowTitleEnabled(false);
+        actionBar.setHomeButtonEnabled(false);
 
         //displaying custom ActionBar
         View topMenu = getLayoutInflater().inflate(R.layout.top_menu, null);
@@ -86,7 +88,7 @@ public class MainActivity extends AppCompatActivity {
         profileButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                fragmentManager.beginTransaction().replace(R.id.fragment_holder, new SettingsFragment()).commit();
+                fragmentManager.beginTransaction().replace(R.id.fragment_holder, new ProfileFragment()).commit();
                 pageTitle.setText("Profile");
             }
         });
