@@ -1,39 +1,39 @@
-//package com.cs356.mobile.ui.notifications;
-//
-//import android.os.Bundle;
-//import android.view.LayoutInflater;
-//import android.view.View;
-//import android.view.ViewGroup;
-//import android.widget.ImageView;
-//import android.widget.TextView;
-//
-//import androidx.annotation.NonNull;
-//import androidx.fragment.app.Fragment;
-//import androidx.recyclerview.widget.RecyclerView;
-//
-//import com.cs356.mobile.R;
-//import com.cs356.mobile.model.Data;
-//import com.cs356.mobile.model.Notification;
-//
-//import java.util.List;
-//
-//public class NotificationsFragment extends Fragment {
-//    private RecyclerView notificationRecyclerView;
-//
-//    public View onCreateView(@NonNull LayoutInflater inflater,
-//                             ViewGroup container, Bundle savedInstanceState) {
-//        View view = inflater.inflate(R.layout.fragment_notifications, container, false);
-//
-//
-//        notificationRecyclerView = view.findViewById(R.id.notification_recycler_view);
-//
-//        //initialize recyclerView
+package com.cs356.mobile.ui.notifications;
+
+import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.cs356.mobile.R;
+import com.cs356.mobile.model.Data;
+import com.cs356.mobile.model.Notification;
+
+import java.util.List;
+
+public class NotificationsFragment extends Fragment {
+    private RecyclerView notificationRecyclerView;
+
+    public View onCreateView(@NonNull LayoutInflater inflater,
+                             ViewGroup container, Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_notifications, container, false);
+
+
+        notificationRecyclerView = view.findViewById(R.id.notification_recycler_view);
+
+        //initialize recyclerView
 //        RecyclerAdapter adapter = new RecyclerAdapter(Data.getInstance().getNotifications());
 //        notificationRecyclerView.setAdapter(adapter);
-//
-//        return view;
-//    }
-//
+
+        return view;
+    }
+
 //    private class RecyclerAdapter extends RecyclerView.Adapter<SearchResultViewHolder> {
 //        private List<Notification> notifications;
 //
@@ -122,4 +122,4 @@
 ////            }
 //        }
 //    }
-//}
+}

@@ -9,7 +9,7 @@
     android:background="@color/primary_color">
 
     <TextView
-        android:id="@+id/event_header"
+        android:id="@+id/list_header"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="30dp"

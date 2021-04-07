@@ -61,10 +61,10 @@ public class CreateEventFragment extends Fragment {
                 FragmentManager fragmentManager = getParentFragmentManager();
 
                 if (newEvent.isInProgress()) {
-                    fragmentManager.beginTransaction().replace(R.id.fragment_holder, new InProgressEventDetailsFragment()).commit();
+                    fragmentManager.beginTransaction().replace(R.id.fragment_holder, new InProgressEventDetailsFragment(newEvent)).commit();
                 }
                 else {
-                    fragmentManager.beginTransaction().replace(R.id.fragment_holder, new ConfirmedEventDetailsFragment()).commit();
+                    fragmentManager.beginTransaction().replace(R.id.fragment_holder, new ConfirmedEventDetailsFragment(newEvent)).commit();
                 }
                 ((MainActivity) getActivity()).setTitleText("Event Details");
                 Data.getInstance().setSelectedEvent(newEvent);

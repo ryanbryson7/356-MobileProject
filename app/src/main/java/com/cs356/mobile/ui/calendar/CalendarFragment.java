@@ -76,10 +76,10 @@ public class CalendarFragment extends Fragment {
                 FragmentManager fragmentManager = getParentFragmentManager();
 
                 if (currentEvent.isInProgress()) {
-                    fragmentManager.beginTransaction().replace(R.id.fragment_holder, new InProgressEventDetailsFragment()).commit();
+                    fragmentManager.beginTransaction().replace(R.id.fragment_holder, new InProgressEventDetailsFragment(currentEvent)).commit();
                 }
                 else {
-                    fragmentManager.beginTransaction().replace(R.id.fragment_holder, new ConfirmedEventDetailsFragment()).commit();
+                    fragmentManager.beginTransaction().replace(R.id.fragment_holder, new ConfirmedEventDetailsFragment(currentEvent)).commit();
                 }
 
                 ((MainActivity) getActivity()).setTitleText("Event Details");
