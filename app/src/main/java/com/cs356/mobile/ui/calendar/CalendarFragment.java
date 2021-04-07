@@ -18,7 +18,8 @@ import com.cs356.mobile.MainActivity;
 import com.cs356.mobile.R;
 import com.cs356.mobile.model.Data;
 import com.cs356.mobile.model.Event;
-import com.cs356.mobile.ui.event.EventDetailsFragment;
+import com.cs356.mobile.ui.event.ConfirmedEventDetailsFragment;
+import com.cs356.mobile.ui.event.InProgressEventDetailsFragment;
 
 import java.time.LocalDate;
 
@@ -71,7 +72,14 @@ public class CalendarFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 FragmentManager fragmentManager = getParentFragmentManager();
-                fragmentManager.beginTransaction().replace(R.id.fragment_holder, new EventDetailsFragment()).commit();
+
+                if (currentEvent.isInProgress()) {
+                    fragmentManager.beginTransaction().replace(R.id.fragment_holder, new InProgressEventDetailsFragment()).commit();
+                }
+                else {
+                    fragmentManager.beginTransaction().replace(R.id.fragment_holder, new ConfirmedEventDetailsFragment()).commit();
+                }
+
                 ((MainActivity) getActivity()).setTitleText("Event Details");
                 Data.getInstance().setSelectedEvent(currentEvent);
             }

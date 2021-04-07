@@ -6,15 +6,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import androidx.fragment.app.FragmentManager;
-
-import com.cs356.mobile.MainActivity;
 import com.cs356.mobile.R;
-import com.cs356.mobile.model.Data;
 import com.cs356.mobile.model.Event;
-import com.cs356.mobile.ui.event.EventDetailsFragment;
 
 import java.util.HashMap;
 import java.util.List;

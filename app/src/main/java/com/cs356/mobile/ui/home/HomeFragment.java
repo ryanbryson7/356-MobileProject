@@ -6,24 +6,19 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ExpandableListAdapter;
 import android.widget.ExpandableListView;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProvider;
 
 import com.cs356.mobile.MainActivity;
 import com.cs356.mobile.R;
 import com.cs356.mobile.model.Data;
 import com.cs356.mobile.model.Event;
-import com.cs356.mobile.ui.event.EventDetailsFragment;
+import com.cs356.mobile.ui.event.ConfirmedEventDetailsFragment;
+import com.cs356.mobile.ui.event.InProgressEventDetailsFragment;
 import com.cs356.mobile.utils.EventListAdapter;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -61,7 +56,12 @@ public class HomeFragment extends Fragment implements EventListAdapter.Listener{
     @Override
     public void onEventClicked(Event event) {
         FragmentManager fragmentManager = getParentFragmentManager();
-        fragmentManager.beginTransaction().replace(R.id.fragment_holder, new EventDetailsFragment()).commit();
+        if (event.isInProgress()) {
+            fragmentManager.beginTransaction().replace(R.id.fragment_holder, new InProgressEventDetailsFragment()).commit();
+        }
+        else {
+            fragmentManager.beginTransaction().replace(R.id.fragment_holder, new ConfirmedEventDetailsFragment()).commit();
+        }
         ((MainActivity) getActivity()).setTitleText("Event Details");
         Data.getInstance().setSelectedEvent(event);
     }
