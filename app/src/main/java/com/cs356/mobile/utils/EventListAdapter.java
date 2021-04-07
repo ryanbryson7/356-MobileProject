@@ -21,10 +21,12 @@ import java.util.List;
 import java.util.Map;
 
 public class EventListAdapter extends BaseExpandableListAdapter {
+    private Listener listener;
     private Context context;
     private HashMap<String, List<Event>> expandableListData;
 
-    public EventListAdapter(Context context, HashMap<String, List<Event>> expandableListData) {
+    public EventListAdapter(Context context, HashMap<String, List<Event>> expandableListData, Listener listener) {
+        this.listener = listener;
         this.context = context;
         this.expandableListData = expandableListData;
     }
@@ -106,7 +108,7 @@ public class EventListAdapter extends BaseExpandableListAdapter {
             @Override
             public void onClick(View v) {
                 //TODO: navigate to event details page
-                Toast.makeText(context, "navigate to event details " + event.getTitle(), Toast.LENGTH_SHORT).show();
+                listener.onEventClicked(event);
             }
         });
 
@@ -131,5 +133,9 @@ public class EventListAdapter extends BaseExpandableListAdapter {
 
         // If this runs, no bueno
         return null;
+    }
+
+    public interface Listener {
+        void onEventClicked(Event event);
     }
 }

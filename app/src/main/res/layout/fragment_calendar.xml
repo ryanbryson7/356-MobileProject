@@ -74,9 +74,10 @@
 
         <Button
             android:id="@+id/more_details_button"
+            android:layout_marginTop="10dp"
             android:layout_width="100dp"
-            android:layout_height="35dp"
-            android:background="@color/white"
+            android:layout_height="30dp"
+            android:background="@drawable/rounded_button_white"
             android:text="@string/more_details"
             android:textColor="@color/primary_color"
             android:textSize="8dp"

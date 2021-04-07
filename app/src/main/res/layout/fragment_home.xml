@@ -6,11 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".ui.home.HomeFragment">
 
-<!--    <ScrollView-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="match_parent"-->
-<!--        app:layout_constraintBottom_toTopOf="parent">-->
-
         <ExpandableListView
             android:theme="@style/menuItemTheme"
             android:id="@+id/expandable_event_lists"

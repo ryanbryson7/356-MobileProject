@@ -9,4 +9,13 @@
     <string name="in_progress_events">In-Progress Events</string>
     <string name="event_details">Event Details:</string>
     <string name="more_details">More Details</string>
+    <string name="event_title">(Event Title)</string>
+    <string name="invitees">Invitees</string>
+    <string name="add_text">+ Add</string>
+    <string name="date_text">Date:</string>
+    <string name="time_text">Time:</string>
+    <string name="location_text">Location:</string>
+    <string name="confirm_event_text">Confirm Event</string>
+    <string name="in_progress_event_text">Set Event To In Progress</string>
+    <string name="edit_event_text">Edit Event Details</string>
 </resources>
