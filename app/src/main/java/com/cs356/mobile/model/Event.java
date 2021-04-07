@@ -1,5 +1,6 @@
 package com.cs356.mobile.model;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -96,12 +97,25 @@ public class Event {
         isInProgress = inProgress;
     }
 
+    // Alternatively, we could just hardcode friendList to come from the Data instance here
+    public List<String> getUninvitedFriends(List<String> friendList) {
+        List<String> uninvitedFriends = new ArrayList<String>();
+
+        for (String friend : friendList) {
+            if (!invitees.contains(friend)) {
+                uninvitedFriends.add(friend);
+            }
+        }
+
+        return uninvitedFriends;
+    }
+
     // I'm thinking this will be useful/necessary for displaying
     // the event in the ExpandableView on the home page
     @Override
     public String toString() {
         return title + "\n"
-                + "\t- Date: " + day +"/" + month + "/" + year + "\n"
+                + "\t- Date: " + month +"/" + day + "/" + year + "\n"
                 + "\t- Time: " + time + "\n";
     }
 

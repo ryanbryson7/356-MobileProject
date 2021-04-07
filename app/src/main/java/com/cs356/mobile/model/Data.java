@@ -8,10 +8,13 @@ public class Data {
     private List<Event> confirmedEvents = new ArrayList<>();
     private List<Event> inProgressEvents = new ArrayList<>();
     private List<Notification> notifications = new ArrayList<>();
+    private List<String> friendsList = new ArrayList<>();
     private Event selectedEvent;
     private static Data instance;
 
     /////////////////DEFAULT DATA/////////////////
+    private List<String> defaultFriendsList = new ArrayList<String>(Arrays.asList("Ryan Bryson", "Andrew Bowden", "Cosmo Cougar", "Michael Jones"));
+
     private List<String> defaultConfirmedEventInvitees = new ArrayList<String>(Arrays.asList("Ryan Bryson", "Andrew Bowden"));
     private List<String> defaultInProgressEventInvitees = new ArrayList<String>(Arrays.asList("Johnny Test"));
 
@@ -27,6 +30,7 @@ public class Data {
         selectedEvent = new Event();
         confirmedEvents.clear();
         inProgressEvents.clear();
+        friendsList = defaultFriendsList;
         confirmedEvents.add(defaultConfirmedEvent1);
         confirmedEvents.add(defaultConfirmedEvent2);
         inProgressEvents.add(defaultInProgressEvent);
@@ -65,8 +69,13 @@ public class Data {
         this.notifications = notifications;
     }
 
+
     public void removeNotification(Notification notification) {
         notifications.remove(notification);
+
+    }
+    public List<String> getFriendsList() {
+        return friendsList;
     }
 
     public void confirmEvent(Event eventToConfirm) {

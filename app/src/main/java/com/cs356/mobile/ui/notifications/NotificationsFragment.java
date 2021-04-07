@@ -20,6 +20,7 @@ import com.cs356.mobile.model.Notification;
 import com.cs356.mobile.ui.event.ConfirmedEventDetailsFragment;
 import com.cs356.mobile.ui.event.InProgressEventDetailsFragment;
 
+
 import java.util.List;
 
 public class NotificationsFragment extends Fragment {
@@ -104,7 +105,7 @@ public class NotificationsFragment extends Fragment {
             Fragment fragmentDestination = null;
 
             if (notification.getNotificationType().equals("Event Reminder")) {
-                fragmentDestination = new ConfirmedEventDetailsFragment();
+                fragmentDestination = new ConfirmedEventDetailsFragment(notification.getAssociatedEvent());
                 ((MainActivity) getActivity()).setTitleText("Event Details");
                 Data.getInstance().setSelectedEvent(notification.getAssociatedEvent());
             }

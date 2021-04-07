@@ -35,7 +35,6 @@ public class HomeFragment extends Fragment implements EventListAdapter.Listener{
         View root = inflater.inflate(R.layout.fragment_home, container, false);
         initializeData();
 
-
         expandableListView = root.findViewById(R.id.expandable_event_lists);
 
         expandableListAdapter = new EventListAdapter(this.getContext(), expandableListData, listener);
@@ -57,10 +56,10 @@ public class HomeFragment extends Fragment implements EventListAdapter.Listener{
     public void onEventClicked(Event event) {
         FragmentManager fragmentManager = getParentFragmentManager();
         if (event.isInProgress()) {
-            fragmentManager.beginTransaction().replace(R.id.fragment_holder, new InProgressEventDetailsFragment()).commit();
+            fragmentManager.beginTransaction().replace(R.id.fragment_holder, new InProgressEventDetailsFragment(event)).commit();
         }
         else {
-            fragmentManager.beginTransaction().replace(R.id.fragment_holder, new ConfirmedEventDetailsFragment()).commit();
+            fragmentManager.beginTransaction().replace(R.id.fragment_holder, new ConfirmedEventDetailsFragment(event)).commit();
         }
         ((MainActivity) getActivity()).setTitleText("Event Details");
         Data.getInstance().setSelectedEvent(event);

@@ -64,9 +64,9 @@ public class EventListAdapter extends BaseExpandableListAdapter {
     public View getGroupView(int groupPosition, boolean isExpanded, View convertView, ViewGroup parent) {
         if (convertView == null) {
             LayoutInflater inflater = (LayoutInflater) this.context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            convertView = inflater.inflate(R.layout.event_list_header, null);
+            convertView = inflater.inflate(R.layout.expandable_list_header, null);
         }
-        TextView eventLabelView = convertView.findViewById(R.id.event_header);
+        TextView eventLabelView = convertView.findViewById(R.id.list_header);
 
         int count = 0;
         String group = "";
@@ -101,7 +101,6 @@ public class EventListAdapter extends BaseExpandableListAdapter {
         convertView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //TODO: navigate to event details page
                 listener.onEventClicked(event);
             }
         });
