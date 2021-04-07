@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CalendarView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -26,6 +27,7 @@ import java.time.LocalDate;
 public class CalendarFragment extends Fragment {
     CalendarView calendarView;
     TextView pageTitle;
+    LinearLayout eventDetailsBox;
     TextView activityText;
     TextView dateText;
     TextView timeText;
@@ -41,7 +43,7 @@ public class CalendarFragment extends Fragment {
                              ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_calendar, container, false);
 
-
+        eventDetailsBox = view.findViewById(R.id.event_details_box);
         calendarView = view.findViewById(R.id.calendar_widget);
         activityText = view.findViewById(R.id.activity_text);
         dateText = view.findViewById(R.id.date_text);
@@ -91,6 +93,8 @@ public class CalendarFragment extends Fragment {
     private void setEventDetails() {
         if (currentEvent != null) {
             activityText.setText("Activity: " + currentEvent.getTitle());
+            activityText.setPadding(0,0,0,0);
+
             dateText.setText("Date: " + currentEvent.getMonth() + "/" + currentEvent.getDay() +"/" +
                     currentEvent.getYear());
             timeText.setText("Time: " + currentEvent.getTime());
@@ -99,6 +103,7 @@ public class CalendarFragment extends Fragment {
         }
         else {
             activityText.setText("No Current Events For This Day");
+            activityText.setPadding(0,40,0,0);
             dateText.setText("");
             timeText.setText("");
             locationText.setText("");

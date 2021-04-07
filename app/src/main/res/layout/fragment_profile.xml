@@ -9,30 +9,30 @@
     android:layout_marginLeft="25dp"
     android:orientation="vertical">
 
-<LinearLayout
-    android:layout_marginTop="30dp"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical"
-    android:gravity="center">
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:layout_weight="1"
-        android:src="@mipmap/ic_profile_gray"
-        android:layout_marginBottom="10dp"/>
-
-    <TextView
+    <LinearLayout
+        android:layout_marginTop="30dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp"
-        android:text="Johnny Test"
-        android:textAlignment="center"
-        android:textSize="24dp"
-        android:textStyle="bold" />
+        android:orientation="vertical"
+        android:gravity="center">
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_weight="1"
+            android:src="@mipmap/ic_profile_gray"
+            android:layout_marginBottom="10dp"/>
 
-</LinearLayout>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:text="Johnny Test"
+            android:textAlignment="center"
+            android:textSize="24dp"
+            android:textStyle="bold" />
+
+    </LinearLayout>
 
     <Button
         android:layout_width="match_parent"

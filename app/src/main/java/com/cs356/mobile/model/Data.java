@@ -7,6 +7,7 @@ import java.util.List;
 public class Data {
     private List<Event> confirmedEvents = new ArrayList<>();
     private List<Event> inProgressEvents = new ArrayList<>();
+    private List<Notification> notifications = new ArrayList<>();
     private Event selectedEvent;
     private static Data instance;
 
@@ -49,6 +50,14 @@ public class Data {
 
     public List<Event> getInProgressEvents() {
         return inProgressEvents;
+    }
+
+    public List<Notification> getNotifications() {
+        return notifications;
+    }
+
+    public void setNotifications(List<Notification> notifications) {
+        this.notifications = notifications;
     }
 
     public void confirmEvent(Event eventToConfirm) {
