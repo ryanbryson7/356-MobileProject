@@ -12,15 +12,17 @@ import com.cs356.mobile.R;
 
 import java.util.List;
 
-public class InviteeListAdapter extends BaseExpandableListAdapter {
+public class UninvitedListAdapter extends BaseExpandableListAdapter {
+    private Listener listener;
     private Context context;
     private String expandableListTitle;
-    private List<String> invitees;
+    private List<String> uninvited;
 
-    public InviteeListAdapter(Context context, String expandableListTitle, List<String> invitees) {
+    public UninvitedListAdapter(Context context, String expandableListTitle, List<String> uninvited, Listener listener) {
+        this.listener = listener;
         this.context = context;
         this.expandableListTitle = expandableListTitle;
-        this.invitees = invitees;
+        this.uninvited = uninvited;
     }
 
 
@@ -31,17 +33,17 @@ public class InviteeListAdapter extends BaseExpandableListAdapter {
 
     @Override
     public int getChildrenCount(int groupPosition) {
-        return invitees.size();
+        return uninvited.size();
     }
 
     @Override
     public Object getGroup(int groupPosition) {
-        return invitees;
+        return uninvited;
     }
 
     @Override
     public Object getChild(int groupPosition, int childPosition) {
-        return invitees.get(childPosition);
+        return uninvited.get(childPosition);
     }
 
     @Override
@@ -81,7 +83,7 @@ public class InviteeListAdapter extends BaseExpandableListAdapter {
 
         TextView inviteeNameView = convertView.findViewById(R.id.invitee_name);
 
-        String invitee = invitees.get(childPosition);
+        String invitee = uninvited.get(childPosition);
         inviteeNameView.setText(invitee);
 
         return convertView;
@@ -89,6 +91,10 @@ public class InviteeListAdapter extends BaseExpandableListAdapter {
 
     @Override
     public boolean isChildSelectable(int groupPosition, int childPosition) {
-        return false;
+        return true;
+    }
+
+    public interface Listener {
+        void onPersonClicked(String person);
     }
 }

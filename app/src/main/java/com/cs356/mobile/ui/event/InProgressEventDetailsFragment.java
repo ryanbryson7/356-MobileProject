@@ -1,5 +1,6 @@
 package com.cs356.mobile.ui.event;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -10,7 +11,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ExpandableListAdapter;
 import android.widget.ExpandableListView;
-import android.widget.TextView;
+import android.widget.LinearLayout;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -22,18 +23,12 @@ import com.cs356.mobile.model.Data;
 import com.cs356.mobile.model.Event;
 import com.cs356.mobile.ui.home.HomeFragment;
 import com.cs356.mobile.utils.InviteeListAdapter;
+import com.cs356.mobile.utils.UninvitedListAdapter;
 
-import java.util.HashMap;
 import java.util.List;
 
-public class InProgressEventDetailsFragment extends Fragment {
-    private ExpandableListView expandableListView;
-    private ExpandableListAdapter expandableListAdapter;
-    private Data data;
-    private Event event;
-    private String expandableListTitle;
-    private List<String> invitees;
-
+public class InProgressEventDetailsFragment extends Fragment implements UninvitedListAdapter.Listener {
+    private UninvitedListAdapter.Listener listener = this;
     private TextWatcher textWatcher = new TextWatcher() {
         @Override
         public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -51,12 +46,24 @@ public class InProgressEventDetailsFragment extends Fragment {
         }
     };
 
+    private ExpandableListView inviteesExpandableListView;
+    private ExpandableListView uninvitedExpandableListView;
+    private ExpandableListAdapter inviteesExpandableListAdapter;
+    private ExpandableListAdapter uninvitedExpandableListAdapter;
+    private Data data;
+    private Event event;
+    private String inviteesListTitle;
+    private String uninvitedListTitle;
+    private List<String> invitees;
+    private List<String> uninvited;
+
     private EditText eventTitleTextView;
     private EditText eventDayTextView;
     private EditText eventMonthTextView;
     private EditText eventYearTextView;
     private EditText eventTimeTextView;
     private EditText eventLocationTextView;
+    private Button addInviteesButton;
     private Button updateEventButton;
     private Button confirmEventButton;
     private Button messagesButton;
@@ -71,6 +78,15 @@ public class InProgressEventDetailsFragment extends Fragment {
 
         initializeData();
 
+        // Adapter stuff
+        inviteesExpandableListView = view.findViewById(R.id.expandable_invitees_list);
+        uninvitedExpandableListView = view.findViewById(R.id.expandable_uninvited_list);
+
+        inviteesExpandableListAdapter = new InviteeListAdapter(this.getContext(), inviteesListTitle, invitees);
+        uninvitedExpandableListAdapter = new UninvitedListAdapter(this.getContext(), uninvitedListTitle, uninvited, listener);
+        inviteesExpandableListView.setAdapter(inviteesExpandableListAdapter);
+        uninvitedExpandableListView.setAdapter(uninvitedExpandableListAdapter);
+
         // Hook up EditTexts and update them with event info
         eventTitleTextView = view.findViewById(R.id.event_title_text_box);
         eventDayTextView = view.findViewById(R.id.day_text_box);
@@ -78,6 +94,7 @@ public class InProgressEventDetailsFragment extends Fragment {
         eventYearTextView = view.findViewById(R.id.year_text_box);
         eventTimeTextView = view.findViewById(R.id.time_text_box);
         eventLocationTextView = view.findViewById(R.id.location_text_box);
+        addInviteesButton = view.findViewById(R.id.add_button);
         updateEventButton = view.findViewById(R.id.update_event_button);
         confirmEventButton = view.findViewById(R.id.confirm_event_button);
         messagesButton = view.findViewById(R.id.messages_button);
@@ -97,6 +114,21 @@ public class InProgressEventDetailsFragment extends Fragment {
         eventYearTextView.addTextChangedListener(textWatcher);
         eventTimeTextView.addTextChangedListener(textWatcher);
         eventLocationTextView.addTextChangedListener(textWatcher);
+        addInviteesButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (uninvitedExpandableListView.getVisibility() == View.INVISIBLE) {
+                    uninvitedExpandableListView.setVisibility(View.VISIBLE);
+                    uninvitedExpandableListView.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+                    addInviteesButton.setText("Done");
+                }
+                else {
+                    uninvitedExpandableListView.setVisibility(View.INVISIBLE);
+                    uninvitedExpandableListView.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 0));
+                    addInviteesButton.setText(R.string.add_text);
+                }
+            }
+        });
         updateEventButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -135,13 +167,6 @@ public class InProgressEventDetailsFragment extends Fragment {
             }
         });
 
-        // Adapter stuff
-        expandableListView = view.findViewById(R.id.expandable_invitees_list);
-
-        expandableListAdapter = new InviteeListAdapter(this.getContext(), expandableListTitle, invitees);
-        expandableListView.setAdapter(expandableListAdapter);
-
-
 
 
         return view;
@@ -149,7 +174,14 @@ public class InProgressEventDetailsFragment extends Fragment {
 
     private void initializeData() {
         data = Data.getInstance();
-        expandableListTitle = getContext().getString(R.string.invitee_title);
+        inviteesListTitle = getContext().getString(R.string.invitee_title);
+        uninvitedListTitle = "Uninvited Friends";
         invitees = event.getInvitees();
+        uninvited = event.getUninvitedFriends(data.getFriendsList());
+    }
+
+    @Override
+    public void onPersonClicked(String person) {
+        event.inviteFriend(person);
     }
 }

@@ -110,6 +110,10 @@ public class Event {
         return uninvitedFriends;
     }
 
+    public void inviteFriend(String person) {
+        invitees.add(person);
+    }
+
     // I'm thinking this will be useful/necessary for displaying
     // the event in the ExpandableView on the home page
     @Override

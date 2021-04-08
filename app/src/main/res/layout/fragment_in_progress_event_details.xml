@@ -18,12 +18,33 @@
         android:textColor="@color/black"
         android:textSize="30dp"
         android:hint="@string/event_title"/>
-
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <ExpandableListView
+            android:theme="@style/menuItemTheme"
+            android:id="@+id/expandable_invitees_list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+        <Button
+            android:id="@+id/add_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:minHeight="10dp"
+            android:layout_gravity="center"
+            android:layout_alignRight="@+id/expandable_invitees_list"
+            android:theme="@style/menuItemTheme"
+            android:background="@drawable/rounded_button_white"
+            android:text="+ Add"
+            android:textColor="@color/black"
+            android:focusable="false"/>
+    </RelativeLayout>
     <ExpandableListView
         android:theme="@style/menuItemTheme"
-        android:id="@+id/expandable_invitees_list"
+        android:id="@+id/expandable_uninvited_list"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="0dp"
+        android:visibility="invisible"/>
 
     <LinearLayout
         android:layout_marginTop="20dp"
@@ -149,7 +170,6 @@
             android:drawableTop="@drawable/chat_bubble_icon"
             android:layout_width="wrap_content"
             android:layout_height="75dp"
-            android:text="Messages"
             android:background="@drawable/circular_button"
             />
 
