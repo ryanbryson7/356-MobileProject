@@ -19,4 +19,5 @@
     <string name="confirm_event_text">Confirm Event</string>
     <string name="in_progress_event_text">Set To In Progress</string>
     <string name="edit_event_text">Edit Event Details</string>
+    <string name="update_event_text">Update Event</string>
 </resources>

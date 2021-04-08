@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ExpandableListAdapter;
 import android.widget.ExpandableListView;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -25,6 +26,11 @@ public class ConfirmedEventDetailsFragment extends Fragment {
     private String expandableListTitle;
     private List<String> invitees;
 
+    private TextView eventTitleTextView;
+    private TextView eventDateTextView;
+    private TextView eventTimeTextView;
+    private TextView eventLocationTextView;
+
     public ConfirmedEventDetailsFragment(Event event) {
         this.event = event;
     }
@@ -33,6 +39,16 @@ public class ConfirmedEventDetailsFragment extends Fragment {
                              ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_confirmed_event_details, container, false);
         initializeData();
+
+        eventTitleTextView = view.findViewById(R.id.event_title_text_box);
+        eventDateTextView = view.findViewById(R.id.event_date);
+        eventTimeTextView = view.findViewById(R.id.event_time);
+        eventLocationTextView = view.findViewById(R.id.event_location);
+
+        eventTitleTextView.setText(event.getTitle());
+        eventDateTextView.setText(event.getDateAsString());
+        eventTimeTextView.setText(event.getTime());
+        eventLocationTextView.setText(event.getLocation());
 
         expandableListView = view.findViewById(R.id.expandable_invitees_list);
 
