@@ -16,18 +16,18 @@ import com.cs356.mobile.R;
 import com.cs356.mobile.model.Data;
 import com.cs356.mobile.model.Event;
 
-public class EventMessagesFragment extends Fragment {
+public class EmptyEventMessagesFragment extends Fragment {
     private Event event;
     private TextView eventTitle;
     private ImageView backButton;
 
-    EventMessagesFragment(Event event) {
+    EmptyEventMessagesFragment(Event event) {
         this.event = event;
     }
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_event_messages, container, false);
+        View view = inflater.inflate(R.layout.fragment_empty_event_messages, container, false);
 
         eventTitle = view.findViewById(R.id.event_title);
         backButton = view.findViewById(R.id.back_button);

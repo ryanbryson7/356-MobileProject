@@ -20,7 +20,7 @@ public class Data {
 
     private Event defaultConfirmedEvent1 = new Event("Making a Planning App", 4, 2, 2021, "Forever", "Android Studio", defaultConfirmedEventInvitees, false);
     private Event defaultConfirmedEvent2 = new Event("Celebrating Last Day of Class", 4, 14, 2021, "7:00pm", "Apt. 320", defaultConfirmedEventInvitees, false);
-    private Event defaultInProgressEvent = new Event("Ski at Sundance Resort", 3, 31, 2021, "6:30pm - 9:00pm", "Provo, Utah", defaultInProgressEventInvitees, true);
+    private Event demoEvent = new Event("Ski at Sundance Resort", 3, 31, 2021, "6:30pm - 9:00pm", "Provo, Utah", defaultInProgressEventInvitees, true);
 
     private Notification messageNotification = new Notification("Event Reminder", defaultConfirmedEvent1.getTitle(), "Message from deez nuts", defaultConfirmedEvent1);
     private Notification messageNotification2 = new Notification("Event Reminder", defaultConfirmedEvent2.getTitle(), "Message from deez nuts2", defaultConfirmedEvent2);
@@ -33,7 +33,7 @@ public class Data {
         friendsList = defaultFriendsList;
         confirmedEvents.add(defaultConfirmedEvent1);
         confirmedEvents.add(defaultConfirmedEvent2);
-        inProgressEvents.add(defaultInProgressEvent);
+        inProgressEvents.add(demoEvent);
         notifications.add(messageNotification);
         notifications.add(messageNotification2);
     }
