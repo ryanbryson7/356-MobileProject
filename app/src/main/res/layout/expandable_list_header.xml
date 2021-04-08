@@ -31,7 +31,8 @@
         android:theme="@style/menuItemTheme"
         android:background="@color/white"
         android:text="Button"
-        android:textColor="@color/black"/>
+        android:textColor="@color/black"
+        android:focusable="false"/>
     <Space
         android:layout_weight="1"
         android:layout_width="wrap_content"
