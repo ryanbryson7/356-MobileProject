@@ -20,6 +20,7 @@ import com.cs356.mobile.MainActivity;
 import com.cs356.mobile.R;
 import com.cs356.mobile.model.Data;
 import com.cs356.mobile.model.Event;
+import com.cs356.mobile.ui.home.HomeFragment;
 import com.cs356.mobile.utils.InviteeListAdapter;
 
 import java.util.HashMap;
@@ -57,6 +58,7 @@ public class InProgressEventDetailsFragment extends Fragment {
     private EditText eventTimeTextView;
     private EditText eventLocationTextView;
     private Button updateEventButton;
+    private Button confirmEventButton;
     private Button messagesButton;
 
     public InProgressEventDetailsFragment(Event event) {
@@ -77,6 +79,7 @@ public class InProgressEventDetailsFragment extends Fragment {
         eventTimeTextView = view.findViewById(R.id.time_text_box);
         eventLocationTextView = view.findViewById(R.id.location_text_box);
         updateEventButton = view.findViewById(R.id.update_event_button);
+        confirmEventButton = view.findViewById(R.id.confirm_event_button);
         messagesButton = view.findViewById(R.id.messages_button);
 
 
@@ -103,6 +106,15 @@ public class InProgressEventDetailsFragment extends Fragment {
                 event.setYear(Integer.parseInt(eventYearTextView.getText().toString()));
                 event.setTime(eventTimeTextView.getText().toString());
                 event.setLocation(eventLocationTextView.getText().toString());
+            }
+        });
+        confirmEventButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FragmentManager fragmentManager = getParentFragmentManager();
+                Data.getInstance().confirmEvent(event);
+
+                fragmentManager.beginTransaction().replace(R.id.fragment_holder, new HomeFragment()).commit();
             }
         });
         messagesButton.setOnClickListener(new View.OnClickListener() {

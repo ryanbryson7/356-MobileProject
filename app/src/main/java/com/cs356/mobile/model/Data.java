@@ -81,6 +81,7 @@ public class Data {
     public void confirmEvent(Event eventToConfirm) {
         for (int i = 0; i < inProgressEvents.size(); ++i) {
             if (eventToConfirm.equals(inProgressEvents.get(i))) {
+                eventToConfirm.setInProgress(false);
                 confirmedEvents.add(eventToConfirm);
                 inProgressEvents.remove(i);
                 return;
@@ -95,6 +96,7 @@ public class Data {
     public void unconfirmEvent(Event eventToUnconfirm) {
         for (int i = 0; i < confirmedEvents.size(); ++i) {
             if (eventToUnconfirm.equals(confirmedEvents.get(i))) {
+                eventToUnconfirm.setInProgress(true);
                 inProgressEvents.add(eventToUnconfirm);
                 confirmedEvents.remove(i);
                 return;
