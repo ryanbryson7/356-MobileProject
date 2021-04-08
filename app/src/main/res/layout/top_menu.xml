@@ -13,7 +13,7 @@
         android:layout_weight="1"
         android:background="@null"
         android:paddingTop="4dp"
-        android:src="@drawable/ic_notification_icon" />
+        android:src="@mipmap/notifications_active" />
 
 
     <TextView

@@ -1,5 +1,6 @@
 package com.cs356.mobile.ui.notifications;
 
+import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,6 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -99,6 +101,7 @@ public class NotificationsFragment extends Fragment {
             notificationBody.setText(notification.getNotificationBody());
         }
 
+        @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
         @Override
         public void onClick(View view) {
             FragmentManager fragmentManager = getParentFragmentManager();
@@ -109,8 +112,8 @@ public class NotificationsFragment extends Fragment {
                 ((MainActivity) getActivity()).setTitleText("Event Details");
                 Data.getInstance().setSelectedEvent(notification.getAssociatedEvent());
             }
-
             Data.getInstance().removeNotification(notification);
+            ((MainActivity) getActivity()).setNotificationStatus();
             fragmentManager.beginTransaction().replace(R.id.fragment_holder, fragmentDestination).commit();
         }
     }
