@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ExpandableListAdapter;
 import android.widget.ExpandableListView;
 
@@ -25,6 +26,7 @@ public class InProgressEventDetailsFragment extends Fragment {
     private Event event;
     private String expandableListTitle;
     private List<String> invitees;
+    private Button messagesButton;
 
     public InProgressEventDetailsFragment(Event event) {
         this.event = event;
@@ -40,6 +42,14 @@ public class InProgressEventDetailsFragment extends Fragment {
 
         expandableListAdapter = new InviteeListAdapter(this.getContext(), expandableListTitle, invitees);
         expandableListView.setAdapter(expandableListAdapter);
+
+        messagesButton = view.findViewById(R.id.messages_button);
+        messagesButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
 
         return view;
     }

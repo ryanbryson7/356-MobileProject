@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.cs356.mobile.R;
@@ -65,6 +66,8 @@ public class InviteeListAdapter extends BaseExpandableListAdapter {
             convertView = inflater.inflate(R.layout.expandable_list_header, null);
         }
         TextView inviteeLabelView = convertView.findViewById(R.id.list_header);
+        Button addButton = convertView.findViewById(R.id.add_button);
+        addButton.setVisibility(View.VISIBLE);
         inviteeLabelView.setText(expandableListTitle);
 
         return convertView;
