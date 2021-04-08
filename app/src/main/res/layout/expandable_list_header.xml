@@ -15,6 +15,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="30dp"
+        android:paddingVertical="15dp"
         android:textSize="22dp"
         android:textStyle="bold"
         android:textAlignment="textStart"
@@ -27,14 +28,15 @@
         android:layout_weight="2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="right"
+        android:minHeight="10dp"
+        android:layout_gravity="center"
         android:theme="@style/menuItemTheme"
-        android:background="@color/white"
-        android:text="Button"
+        android:background="@drawable/rounded_button_white"
+        android:text="+ Add"
         android:textColor="@color/black"
         android:focusable="false"/>
     <Space
-        android:layout_weight="1"
+        android:layout_weight="2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
 
