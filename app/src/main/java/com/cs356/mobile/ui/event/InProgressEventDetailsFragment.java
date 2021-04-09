@@ -13,6 +13,7 @@ import android.widget.ExpandableListAdapter;
 import android.widget.ExpandableListView;
 import android.widget.LinearLayout;
 import android.widget.ListAdapter;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -60,6 +61,7 @@ public class InProgressEventDetailsFragment extends Fragment implements ListList
     private List<String> invitees;
     private List<String> uninvited;
 
+    private TextView eventStatusTextView;
     private EditText eventTitleTextView;
     private EditText eventDayTextView;
     private EditText eventMonthTextView;
@@ -94,6 +96,7 @@ public class InProgressEventDetailsFragment extends Fragment implements ListList
         uninvitedExpandableListView.expandGroup(0);
 
         // Hook up EditTexts and update them with event info
+        eventStatusTextView = view.findViewById(R.id.event_status_text);
         eventTitleTextView = view.findViewById(R.id.event_title_text_box);
         eventDayTextView = view.findViewById(R.id.day_text_box);
         eventMonthTextView = view.findViewById(R.id.month_text_box);

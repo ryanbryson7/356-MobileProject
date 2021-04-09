@@ -17,14 +17,26 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
+        android:textSize="18dp"
+        android:textStyle="bold"
         android:layout_marginRight="10dp"
         android:layout_marginLeft="20dp"
         android:text="Event Title"/>
+    <TextView
+        android:id="@+id/event_list_status"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:textSize="18dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="20dp"
+        android:text="Event Status"/>
 
     <TextView
         android:id="@+id/event_list_date"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:textSize="18dp"
         android:layout_marginRight="10dp"
         android:layout_marginLeft="20dp"
         android:text="Event Date"/>
@@ -32,9 +44,19 @@
         android:id="@+id/event_list_time"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:textSize="18dp"
         android:layout_marginRight="10dp"
         android:layout_marginLeft="20dp"
         android:text="Event Time"/>
+        <TextView
+            android:id="@+id/event_list_location"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="18dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginBottom="10dp"
+            android:text="Event Location"/>
 </LinearLayout>
 
 </LinearLayout>

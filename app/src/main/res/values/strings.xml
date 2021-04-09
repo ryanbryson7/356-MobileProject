@@ -26,4 +26,7 @@
     <string name="date"><b>Date: %1$s</b></string>
     <string name="time"><b>Time: %1$s</b></string>
     <string name="location">Location: %1$s</string>
+    <string name="status">Status: </string>
+    <string name="in_progress_text">In-Progress</string>
+    <string name="confirmed_text">Confirmed</string>
 </resources>

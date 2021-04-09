@@ -102,8 +102,10 @@ public class EventListAdapter extends BaseExpandableListAdapter {
             convertView.setPadding(0, 0, 0, 20);
 
         TextView eventTitleView = convertView.findViewById(R.id.event_list_title);
+        TextView eventStatusView = convertView.findViewById(R.id.event_list_status);
         TextView eventDateView = convertView.findViewById(R.id.event_list_date);
         TextView eventTimeView = convertView.findViewById(R.id.event_list_time);
+        TextView eventLocationView = convertView.findViewById(R.id.event_list_location);
 
         List<Event> eventList = getEventListByIndex(groupPosition);
         Event event = eventList.get(childPosition);
@@ -111,6 +113,14 @@ public class EventListAdapter extends BaseExpandableListAdapter {
         eventTitleView.setText(event.getTitle());
         eventDateView.setText(event.getDateAsString());
         eventTimeView.setText(event.getTime());
+        eventLocationView.setText(event.getLocation());
+
+        if (event.isInProgress()) {
+            eventStatusView.setText("In Progress");
+        }
+        else {
+            eventStatusView.setText("Confirmed");
+        }
 
         convertView.setOnClickListener(new View.OnClickListener() {
             @Override
