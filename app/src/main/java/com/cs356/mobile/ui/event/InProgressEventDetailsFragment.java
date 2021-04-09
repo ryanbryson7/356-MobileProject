@@ -12,6 +12,7 @@ import android.widget.EditText;
 import android.widget.ExpandableListAdapter;
 import android.widget.ExpandableListView;
 import android.widget.LinearLayout;
+import android.widget.ListAdapter;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -24,12 +25,13 @@ import com.cs356.mobile.model.Data;
 import com.cs356.mobile.model.Event;
 import com.cs356.mobile.ui.home.HomeFragment;
 import com.cs356.mobile.utils.InviteeListAdapter;
+import com.cs356.mobile.utils.ListListener;
 import com.cs356.mobile.utils.UninvitedListAdapter;
 
 import java.util.List;
 
-public class InProgressEventDetailsFragment extends Fragment implements UninvitedListAdapter.Listener {
-    private UninvitedListAdapter.Listener listener = this;
+public class InProgressEventDetailsFragment extends Fragment implements ListListener {
+    private ListListener listener = this;
     private TextWatcher textWatcher = new TextWatcher() {
         @Override
         public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -83,7 +85,7 @@ public class InProgressEventDetailsFragment extends Fragment implements Uninvite
         inviteesExpandableListView = view.findViewById(R.id.expandable_invitees_list);
         uninvitedExpandableListView = view.findViewById(R.id.expandable_uninvited_list);
 
-        inviteesExpandableListAdapter = new InviteeListAdapter(this.getContext(), inviteesListTitle, invitees);
+        inviteesExpandableListAdapter = new InviteeListAdapter(this.getContext(), inviteesListTitle, invitees, listener);
         uninvitedExpandableListAdapter = new UninvitedListAdapter(this.getContext(), uninvitedListTitle, uninvited, listener);
         inviteesExpandableListView.setAdapter(inviteesExpandableListAdapter);
         uninvitedExpandableListView.setAdapter(uninvitedExpandableListAdapter);
@@ -142,6 +144,7 @@ public class InProgressEventDetailsFragment extends Fragment implements Uninvite
                 event.setYear(Integer.parseInt(eventYearTextView.getText().toString()));
                 event.setTime(eventTimeTextView.getText().toString());
                 event.setLocation(eventLocationTextView.getText().toString());
+                event.setInvitees(invitees);
                 Toast.makeText(getContext(), "Changes Saved", Toast.LENGTH_SHORT).show();
             }
         });
@@ -186,7 +189,39 @@ public class InProgressEventDetailsFragment extends Fragment implements Uninvite
     }
 
     @Override
-    public void onPersonClicked(String person) {
-        event.inviteFriend(person);
+    public void invitePerson(String person) {
+        invitees.add(person);
+        uninvited.remove(person);
+
+
+        // Update List Adapter/Views
+        inviteesExpandableListAdapter = new InviteeListAdapter(this.getContext(), inviteesListTitle, invitees, listener);
+        uninvitedExpandableListAdapter = new UninvitedListAdapter(this.getContext(), uninvitedListTitle, uninvited, listener);
+        inviteesExpandableListView.setAdapter(inviteesExpandableListAdapter);
+        uninvitedExpandableListView.setAdapter(uninvitedExpandableListAdapter);
+
+        inviteesExpandableListView.expandGroup(0);
+        uninvitedExpandableListView.expandGroup(0);
     }
+
+    @Override
+    public void uninvitePerson(String person) {
+        invitees.remove(person);
+        uninvited.add(person);
+
+        boolean uninvitedIsExpanded = uninvitedExpandableListView.isGroupExpanded(0);
+
+        // Update List Adapter/Views
+        inviteesExpandableListAdapter = new InviteeListAdapter(this.getContext(), inviteesListTitle, invitees, listener);
+        uninvitedExpandableListAdapter = new UninvitedListAdapter(this.getContext(), uninvitedListTitle, uninvited, listener);
+        inviteesExpandableListView.setAdapter(inviteesExpandableListAdapter);
+        uninvitedExpandableListView.setAdapter(uninvitedExpandableListAdapter);
+
+        inviteesExpandableListView.expandGroup(0);
+        if (uninvitedIsExpanded) {
+            uninvitedExpandableListView.expandGroup(0);
+        }
+    }
+
+
 }

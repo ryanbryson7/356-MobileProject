@@ -13,12 +13,12 @@ import com.cs356.mobile.R;
 import java.util.List;
 
 public class UninvitedListAdapter extends BaseExpandableListAdapter {
-    private Listener listener;
+    private ListListener listener;
     private Context context;
     private String expandableListTitle;
     private List<String> uninvited;
 
-    public UninvitedListAdapter(Context context, String expandableListTitle, List<String> uninvited, Listener listener) {
+    public UninvitedListAdapter(Context context, String expandableListTitle, List<String> uninvited, ListListener listener) {
         this.listener = listener;
         this.context = context;
         this.expandableListTitle = expandableListTitle;
@@ -81,10 +81,18 @@ public class UninvitedListAdapter extends BaseExpandableListAdapter {
             convertView = inflater.inflate(R.layout.invitee_list_item, null);
         }
 
+        Button inviteButton = convertView.findViewById(R.id.invite_button);
         TextView inviteeNameView = convertView.findViewById(R.id.invitee_name);
 
         String invitee = uninvited.get(childPosition);
         inviteeNameView.setText(invitee);
+
+        inviteButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                listener.invitePerson(invitee);
+            }
+        });
 
         return convertView;
     }
@@ -92,9 +100,5 @@ public class UninvitedListAdapter extends BaseExpandableListAdapter {
     @Override
     public boolean isChildSelectable(int groupPosition, int childPosition) {
         return true;
-    }
-
-    public interface Listener {
-        void onPersonClicked(String person);
     }
 }

@@ -1,6 +1,8 @@
 package com.cs356.mobile.ui.event;
 
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,21 +18,47 @@ import com.cs356.mobile.MainActivity;
 import com.cs356.mobile.R;
 import com.cs356.mobile.model.Data;
 import com.cs356.mobile.model.Event;
+import com.cs356.mobile.utils.ListListener;
+import com.cs356.mobile.utils.UninvitedListAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class CreateEventFragment extends Fragment {
+public class CreateEventFragment extends Fragment implements ListListener {
+    private ListListener listener = this;
+    private TextWatcher textWatcher = new TextWatcher() {
+        @Override
+        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
-    EditText eventTitleTextBox;
-    EditText monthTextBox;
-    EditText dayTextBox;
-    EditText yearTextBox;
-    EditText timeTextBox;
-    EditText locationTextBox;
-    Button createEventButton;
-    List<String> invitees = new ArrayList<>();
-    ExpandableListView expandableListInvitees;
+        }
+
+        @Override
+        public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+        }
+
+        @Override
+        public void afterTextChanged(Editable s) {
+
+        }
+    };
+
+    private Data data;
+    private String inviteesListTitle;
+    private String uninvitedListTitle;
+    private List<String> invitees;
+    private List<String> uninvited;
+
+
+
+    private EditText eventTitleTextBox;
+    private EditText monthTextBox;
+    private EditText dayTextBox;
+    private EditText yearTextBox;
+    private EditText timeTextBox;
+    private EditText locationTextBox;
+    private Button createEventButton;
+    private ExpandableListView expandableListInvitees;
 
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -71,6 +99,26 @@ public class CreateEventFragment extends Fragment {
             }
         });
 
+        initializeData();
+
         return view;
+    }
+
+    private void initializeData() {
+        data = Data.getInstance();
+        inviteesListTitle = getContext().getString(R.string.invitee_title);
+        uninvitedListTitle = "Uninvited Friends";
+        invitees = new ArrayList<>();
+        uninvited = data.getFriendsList();
+    }
+
+    @Override
+    public void invitePerson(String person) {
+
+    }
+
+    @Override
+    public void uninvitePerson(String person) {
+
     }
 }

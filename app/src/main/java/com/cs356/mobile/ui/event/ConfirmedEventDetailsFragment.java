@@ -66,7 +66,7 @@ public class ConfirmedEventDetailsFragment extends Fragment {
 
         expandableListView = view.findViewById(R.id.expandable_invitees_list);
 
-        expandableListAdapter = new InviteeListAdapter(this.getContext(), expandableListTitle, invitees);
+        expandableListAdapter = new InviteeListAdapter(this.getContext(), expandableListTitle, invitees, null);
         expandableListView.setAdapter(expandableListAdapter);
 
         return view;

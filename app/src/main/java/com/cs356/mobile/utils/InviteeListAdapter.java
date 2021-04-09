@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.cs356.mobile.R;
@@ -13,14 +14,16 @@ import com.cs356.mobile.R;
 import java.util.List;
 
 public class InviteeListAdapter extends BaseExpandableListAdapter {
+    private ListListener listener;
     private Context context;
     private String expandableListTitle;
     private List<String> invitees;
 
-    public InviteeListAdapter(Context context, String expandableListTitle, List<String> invitees) {
+    public InviteeListAdapter(Context context, String expandableListTitle, List<String> invitees, ListListener listener) {
         this.context = context;
         this.expandableListTitle = expandableListTitle;
         this.invitees = invitees;
+        this.listener = listener;
     }
 
 
@@ -79,16 +82,40 @@ public class InviteeListAdapter extends BaseExpandableListAdapter {
             convertView = inflater.inflate(R.layout.invitee_list_item, null);
         }
 
+        if (listener == null) {
+            Button uninviteButton = convertView.findViewById(R.id.invite_button);
+            uninviteButton.setVisibility(View.INVISIBLE);
+            uninviteButton.setMinimumWidth(0);
+            uninviteButton.setMinHeight(0);
+            uninviteButton.setWidth(0);
+            uninviteButton.setHeight(0);
+
+            TextView inviteeNameView = convertView.findViewById(R.id.invitee_name);
+
+            String invitee = invitees.get(childPosition);
+            inviteeNameView.setText(invitee);
+            return convertView;
+        }
+
+        Button uninviteButton = convertView.findViewById(R.id.invite_button);
+        uninviteButton.setText("Un-invite");
         TextView inviteeNameView = convertView.findViewById(R.id.invitee_name);
 
         String invitee = invitees.get(childPosition);
         inviteeNameView.setText(invitee);
+
+        uninviteButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                listener.uninvitePerson(invitee);
+            }
+        });
 
         return convertView;
     }
 
     @Override
     public boolean isChildSelectable(int groupPosition, int childPosition) {
-        return false;
+        return true;
     }
 }

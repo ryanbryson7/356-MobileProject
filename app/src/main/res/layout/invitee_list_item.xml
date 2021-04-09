@@ -2,13 +2,23 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
     android:background="@color/gray">
+
+    <Button
+        android:id="@+id/invite_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Invite"
+        android:layout_marginHorizontal="10dp"
+        android:focusable="true"/>
     <TextView
         android:id="@+id/invitee_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Invitee Name"/>
+        android:text="Invitee Name"
+        android:textSize="20dp"
+        android:layout_gravity="center_vertical"/>
 
 </LinearLayout>
