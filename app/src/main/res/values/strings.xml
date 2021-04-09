@@ -8,7 +8,7 @@
     <string name="confirmed_events">Confirmed Events</string>
     <string name="in_progress_events">In-Progress Events</string>
     <string name="invitee_title">Invitees</string>
-    <string name="event_details">Event Details:</string>
+    <string name="event_details"><i>Event Details:</i></string>
     <string name="more_details">More Details</string>
     <string name="event_title">(Event Title)</string>
     <string name="invitees">Invitees</string>
@@ -20,4 +20,10 @@
     <string name="in_progress_event_text">Set To In Progress</string>
     <string name="edit_event_text">Edit Event Details</string>
     <string name="update_event_text">Save Changes</string>
+    <string name="in_progress_status_text">Status: In Progress</string>
+    <string name="confirmed_status_text">Status: Confirmed</string>
+    <string name="activity"><b>Activity: </b> %1$s</string>
+    <string name="date"><b>Date: %1$s</b></string>
+    <string name="time"><b>Time: %1$s</b></string>
+    <string name="location">Location: %1$s</string>
 </resources>

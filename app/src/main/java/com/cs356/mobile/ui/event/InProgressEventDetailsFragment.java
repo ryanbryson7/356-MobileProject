@@ -12,6 +12,7 @@ import android.widget.EditText;
 import android.widget.ExpandableListAdapter;
 import android.widget.ExpandableListView;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -87,6 +88,9 @@ public class InProgressEventDetailsFragment extends Fragment implements Uninvite
         inviteesExpandableListView.setAdapter(inviteesExpandableListAdapter);
         uninvitedExpandableListView.setAdapter(uninvitedExpandableListAdapter);
 
+        //expand uninvited list view by default
+        uninvitedExpandableListView.expandGroup(0);
+
         // Hook up EditTexts and update them with event info
         eventTitleTextView = view.findViewById(R.id.event_title_text_box);
         eventDayTextView = view.findViewById(R.id.day_text_box);
@@ -138,6 +142,7 @@ public class InProgressEventDetailsFragment extends Fragment implements Uninvite
                 event.setYear(Integer.parseInt(eventYearTextView.getText().toString()));
                 event.setTime(eventTimeTextView.getText().toString());
                 event.setLocation(eventLocationTextView.getText().toString());
+                Toast.makeText(getContext(), "Changes Saved", Toast.LENGTH_SHORT).show();
             }
         });
         confirmEventButton.setOnClickListener(new View.OnClickListener() {

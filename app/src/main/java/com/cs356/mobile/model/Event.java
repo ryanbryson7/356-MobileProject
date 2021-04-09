@@ -1,5 +1,7 @@
 package com.cs356.mobile.model;
 
+import com.applandeo.materialcalendarview.EventDay;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -13,6 +15,7 @@ public class Event {
     private String location;
     private List<String> invitees;
     private boolean isInProgress;
+    private EventDay eventDay;
 
     public Event() {
         title = "DEFAULT TITLE";
@@ -136,6 +139,14 @@ public class Event {
                 Objects.equals(getTime(), event.getTime()) &&
                 Objects.equals(getLocation(), event.getLocation()) &&
                 Objects.equals(getInvitees(), event.getInvitees());
+    }
+
+    public void setEventDay(EventDay eventDay) {
+        this.eventDay = eventDay;
+    }
+
+    public EventDay getEventDay() {
+        return eventDay;
     }
 
 }

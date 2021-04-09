@@ -6,7 +6,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.CalendarView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -15,6 +14,9 @@ import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
+import com.applandeo.materialcalendarview.EventDay;
+import com.applandeo.materialcalendarview.exceptions.OutOfDateRangeException;
+import com.applandeo.materialcalendarview.listeners.OnDayClickListener;
 import com.cs356.mobile.MainActivity;
 import com.cs356.mobile.R;
 import com.cs356.mobile.model.Data;
@@ -23,15 +25,20 @@ import com.cs356.mobile.ui.event.ConfirmedEventDetailsFragment;
 import com.cs356.mobile.ui.event.InProgressEventDetailsFragment;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.List;
 
 public class CalendarFragment extends Fragment {
-    CalendarView calendarView;
+    com.applandeo.materialcalendarview.CalendarView calendarView;
+    //CalendarView calendarView;
     TextView pageTitle;
     LinearLayout eventDetailsBox;
     TextView activityText;
     TextView dateText;
     TextView timeText;
     TextView locationText;
+    TextView eventStatusText;
     Button moreDetailsButton;
     Event currentEvent;
     int currentDay;
@@ -44,13 +51,13 @@ public class CalendarFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_calendar, container, false);
 
         eventDetailsBox = view.findViewById(R.id.event_details_box);
-        calendarView = view.findViewById(R.id.calendar_widget);
+        calendarView = view.findViewById(R.id.calendar_view);
         activityText = view.findViewById(R.id.activity_text);
         dateText = view.findViewById(R.id.date_text);
         timeText = view.findViewById(R.id.time_text);
         locationText = view.findViewById(R.id.location_text);
         moreDetailsButton = view.findViewById(R.id.more_details_button);
-        //pageTitle = view.findViewById(R.id.page_title);
+        eventStatusText = view.findViewById(R.id.event_status_text);
 
         LocalDate localDate = LocalDate.now();
 
@@ -61,11 +68,17 @@ public class CalendarFragment extends Fragment {
         currentEvent = Data.getInstance().findEventByDate(currentMonth, currentDay, currentYear);
         setEventDetails();
 
-        calendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
+
+        try {
+            setUpCalendar();
+        } catch (OutOfDateRangeException e) {
+            e.printStackTrace();
+        }
+
+        calendarView.setOnDayClickListener(new OnDayClickListener() {
             @Override
-            public void onSelectedDayChange(@NonNull CalendarView view, int year, int month, int dayOfMonth) {
-                month += 1;
-                currentEvent = Data.getInstance().findEventByDate(month, dayOfMonth, year);
+            public void onDayClick(EventDay eventDay) {
+                currentEvent = Data.getInstance().findEventByEventDay(eventDay);
                 setEventDetails();
             }
         });
@@ -94,20 +107,58 @@ public class CalendarFragment extends Fragment {
         if (currentEvent != null) {
             activityText.setText("Activity: " + currentEvent.getTitle());
             activityText.setPadding(0,0,0,0);
-
             dateText.setText("Date: " + currentEvent.getMonth() + "/" + currentEvent.getDay() +"/" +
                     currentEvent.getYear());
             timeText.setText("Time: " + currentEvent.getTime());
             locationText.setText("Location: " + currentEvent.getLocation());
             moreDetailsButton.setVisibility(View.VISIBLE);
+
+            if (currentEvent.isInProgress()) {
+                eventStatusText.setText(R.string.in_progress_status_text);
+            }
+            else {
+                eventStatusText.setText(R.string.confirmed_status_text);
+            }
         }
+        //valid event selected
         else {
             activityText.setText("No Current Events For This Day");
             activityText.setPadding(0,40,0,0);
+            eventStatusText.setText("");
             dateText.setText("");
             timeText.setText("");
             locationText.setText("");
             moreDetailsButton.setVisibility(View.INVISIBLE);
         }
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    public void setUpCalendar() throws OutOfDateRangeException {
+        calendarView.setDate(Calendar.getInstance());
+
+        Calendar.Builder calendarBuilder = new Calendar.Builder();
+        List<EventDay> eventDays = new ArrayList<>();
+
+        for (Event confirmedEvent : Data.getInstance().getConfirmedEvents()) {
+            Calendar calendar = calendarBuilder.setDate(confirmedEvent.getYear(), confirmedEvent.getMonth() - 1, confirmedEvent.getDay()).build();
+            EventDay eventDay = new EventDay(calendar, R.drawable.circle_blue);
+            eventDays.add(eventDay);
+            if (confirmedEvent.getEventDay() == null) {
+                confirmedEvent.setEventDay(eventDay);
+            }
+        }
+
+        for (Event inProgressEvent : Data.getInstance().getInProgressEvents()) {
+            Calendar calendar = calendarBuilder.setDate(inProgressEvent.getYear(), inProgressEvent.getMonth() - 1, inProgressEvent.getDay()).build();
+            EventDay eventDay = new EventDay(calendar, R.drawable.circle_red);
+            eventDays.add(eventDay);
+
+            if (inProgressEvent.getEventDay() == null) {
+                inProgressEvent.setEventDay(eventDay);
+            }
+        }
+
+
+        calendarView.setEvents(eventDays);
     }
 }

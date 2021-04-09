@@ -1,5 +1,7 @@
 package com.cs356.mobile.model;
 
+import com.applandeo.materialcalendarview.EventDay;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -20,7 +22,7 @@ public class Data {
 
     private Event defaultConfirmedEvent1 = new Event("Making a Planning App", 4, 2, 2021, "Forever", "Android Studio", defaultConfirmedEventInvitees, false);
     private Event defaultConfirmedEvent2 = new Event("Celebrating Last Day of Class", 4, 14, 2021, "7:00pm", "Apt. 320", defaultConfirmedEventInvitees, false);
-    private Event demoEvent = new Event("Ski at Sundance Resort", 3, 31, 2021, "6:30pm - 9:00pm", "Provo, Utah", defaultInProgressEventInvitees, true);
+    private Event demoEvent = new Event("Ski at Sundance Resort", 4, 7, 2021, "6:30pm - 9:00pm", "Provo, Utah", defaultInProgressEventInvitees, true);
 
     private Notification messageNotification = new Notification("Event Reminder", defaultConfirmedEvent1.getTitle(), "Message from deez nuts", defaultConfirmedEvent1);
     private Notification messageNotification2 = new Notification("Event Reminder", defaultConfirmedEvent2.getTitle(), "Message from deez nuts2", defaultConfirmedEvent2);
@@ -116,6 +118,20 @@ public class Data {
         }
         for (Event event : inProgressEvents) {
             if (event.getDay() == day && event.getMonth() == month && event.getYear() == year) {
+                return event;
+            }
+        }
+        return null;
+    }
+
+    public Event findEventByEventDay(EventDay eventDay) {
+        for (Event event : confirmedEvents) {
+            if (event.getEventDay().equals(eventDay)) {
+                return event;
+            }
+        }
+        for (Event event : inProgressEvents) {
+            if (event.getEventDay().equals(eventDay)) {
                 return event;
             }
         }

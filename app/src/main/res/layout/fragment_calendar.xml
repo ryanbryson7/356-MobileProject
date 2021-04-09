@@ -6,34 +6,45 @@
     android:layout_height="match_parent"
     tools:context=".ui.calendar.CalendarFragment">
 
-    <CalendarView
-        android:layout_marginTop="0dp"
-        android:id="@+id/calendar_widget"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.491"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+<!--    <CalendarView-->
+<!--        android:layout_marginTop="0dp"-->
+<!--        android:id="@+id/calendar_widget"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:theme="@style/Theme.CS356MobileApp"-->
+<!--        android:focusedMonthDateColor="@color/primary_color"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintHorizontal_bias="0.491"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent" />-->
 
-    <View
+    <com.applandeo.materialcalendarview.CalendarView
+        android:id="@+id/calendar_view"
         android:layout_width="match_parent"
-        android:layout_height="2dp"
-        android:layout_margin="10dp"
-        android:background="@android:color/darker_gray"
-        app:layout_constraintBottom_toBottomOf="@+id/calendar_widget" />
+        android:layout_height="400dp"
+        app:headerColor="@color/primary_color"
+        app:layout_constraintTop_toTopOf="parent"
+        app:selectionColor="@color/primary_color" >
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_margin="10dp"
+            android:background="@android:color/black" />
+    </com.applandeo.materialcalendarview.CalendarView>
 
     <LinearLayout
         android:id="@+id/event_details_box"
-        android:layout_width="225dp"
+        android:layout_width="250dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
         android:background="@drawable/rounded_button_blue"
         android:orientation="vertical"
         android:padding="15dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/calendar_widget">
+        app:layout_constraintTop_toBottomOf="@+id/calendar_view"
+        app:layout_constraintVertical_bias="0.187">
 
         <TextView
             android:id="@+id/event_details_text"
@@ -46,6 +57,12 @@
 
         <TextView
             android:id="@+id/activity_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/event_details"
+            android:textColor="@color/white" />
+        <TextView
+            android:id="@+id/event_status_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/event_details"
@@ -71,22 +88,25 @@
             android:layout_height="wrap_content"
             android:text="@string/event_details"
             android:textColor="@color/white" />
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:gravity="center_horizontal">
-        <Button
-            android:id="@+id/more_details_button"
-            android:layout_marginTop="10dp"
-            android:layout_width="100dp"
-            android:layout_height="30dp"
-            android:gravity=""
-            android:background="@drawable/rounded_button_white"
-            android:text="@string/more_details"
-            android:textColor="@color/primary_color"
-            android:textSize="8dp"
-            android:theme="@style/menuItemTheme" />
-</LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_horizontal">
+
+            <Button
+                android:id="@+id/more_details_button"
+                android:layout_width="100dp"
+                android:layout_height="30dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/rounded_button_white"
+                android:gravity=""
+                android:text="@string/more_details"
+                android:textColor="@color/primary_color"
+                android:textSize="8dp"
+                android:textStyle="bold"
+                android:theme="@style/menuItemTheme" />
+        </LinearLayout>
     </LinearLayout>
 
 
