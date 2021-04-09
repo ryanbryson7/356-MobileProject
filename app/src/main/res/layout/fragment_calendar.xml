@@ -22,7 +22,7 @@
         android:id="@+id/calendar_view"
         android:layout_width="match_parent"
         android:layout_height="400dp"
-        app:headerColor="@color/primary_color"
+        app:headerColor="@color/secondary_dark_color"
         app:layout_constraintTop_toTopOf="parent"
         app:selectionColor="@color/primary_color" >
 
@@ -53,6 +53,7 @@
             android:text="@string/event_details"
             android:textColor="@color/white"
             android:textSize="18dp"
+            android:layout_marginBottom="5dp"
             android:textStyle="bold" />
 
         <TextView
