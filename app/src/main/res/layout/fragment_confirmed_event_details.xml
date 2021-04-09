@@ -104,6 +104,26 @@
             android:textSize="12dp" />
     </LinearLayout>
 
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="50dp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="right"
+        android:padding="50dp">
+
+        <Button
+            android:id="@+id/messages_button"
+            android:drawableTop="@drawable/chat_bubble_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="75dp"
+            android:background="@drawable/circular_button"
+            />
+
+    </LinearLayout>
+
 
 
 </LinearLayout>

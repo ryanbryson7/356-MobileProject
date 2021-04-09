@@ -8,7 +8,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ExpandableListAdapter;
 import android.widget.ExpandableListView;
+import android.widget.LinearLayout;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -18,6 +20,7 @@ import com.cs356.mobile.MainActivity;
 import com.cs356.mobile.R;
 import com.cs356.mobile.model.Data;
 import com.cs356.mobile.model.Event;
+import com.cs356.mobile.utils.InviteeListAdapter;
 import com.cs356.mobile.utils.ListListener;
 import com.cs356.mobile.utils.UninvitedListAdapter;
 
@@ -43,13 +46,15 @@ public class CreateEventFragment extends Fragment implements ListListener {
         }
     };
 
+    private ExpandableListView inviteesExpandableListView;
+    private ExpandableListView uninvitedExpandableListView;
+    private ExpandableListAdapter inviteesExpandableListAdapter;
+    private ExpandableListAdapter uninvitedExpandableListAdapter;
     private Data data;
     private String inviteesListTitle;
     private String uninvitedListTitle;
     private List<String> invitees;
     private List<String> uninvited;
-
-
 
     private EditText eventTitleTextBox;
     private EditText monthTextBox;
@@ -57,13 +62,27 @@ public class CreateEventFragment extends Fragment implements ListListener {
     private EditText yearTextBox;
     private EditText timeTextBox;
     private EditText locationTextBox;
+    private Button addInviteesButton;
     private Button createEventButton;
-    private ExpandableListView expandableListInvitees;
 
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_create_event, container, false);
+
+        initializeData();
+
+        // Adapter stuff
+        inviteesExpandableListView = view.findViewById(R.id.expandable_invitees_list);
+        uninvitedExpandableListView = view.findViewById(R.id.expandable_uninvited_list);
+
+        inviteesExpandableListAdapter = new InviteeListAdapter(this.getContext(), inviteesListTitle, invitees, listener);
+        uninvitedExpandableListAdapter = new UninvitedListAdapter(this.getContext(), uninvitedListTitle, uninvited, listener);
+        inviteesExpandableListView.setAdapter(inviteesExpandableListAdapter);
+        uninvitedExpandableListView.setAdapter(uninvitedExpandableListAdapter);
+
+        //expand uninvited list view by default
+        uninvitedExpandableListView.expandGroup(0);
 
         eventTitleTextBox = view.findViewById(R.id.event_title_text_box);
         monthTextBox = view.findViewById(R.id.month_text_box);
@@ -71,9 +90,25 @@ public class CreateEventFragment extends Fragment implements ListListener {
         yearTextBox = view.findViewById(R.id.year_text_box);
         timeTextBox = view.findViewById(R.id.time_text_box);
         locationTextBox = view.findViewById(R.id.location_text_box);
+        addInviteesButton = view.findViewById(R.id.add_button);
         createEventButton = view.findViewById(R.id.create_event_button);
-        expandableListInvitees = view.findViewById(R.id.expandable_invitees_list);
 
+        // Listeners
+        addInviteesButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (uninvitedExpandableListView.getVisibility() == View.INVISIBLE) {
+                    uninvitedExpandableListView.setVisibility(View.VISIBLE);
+                    uninvitedExpandableListView.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+                    addInviteesButton.setText("Done");
+                }
+                else {
+                    uninvitedExpandableListView.setVisibility(View.INVISIBLE);
+                    uninvitedExpandableListView.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 0));
+                    addInviteesButton.setText(R.string.add_text);
+                }
+            }
+        });
         createEventButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -99,7 +134,7 @@ public class CreateEventFragment extends Fragment implements ListListener {
             }
         });
 
-        initializeData();
+
 
         return view;
     }
@@ -114,11 +149,36 @@ public class CreateEventFragment extends Fragment implements ListListener {
 
     @Override
     public void invitePerson(String person) {
+        invitees.add(person);
+        uninvited.remove(person);
 
+
+        // Update List Adapter/Views
+        inviteesExpandableListAdapter = new InviteeListAdapter(this.getContext(), inviteesListTitle, invitees, listener);
+        uninvitedExpandableListAdapter = new UninvitedListAdapter(this.getContext(), uninvitedListTitle, uninvited, listener);
+        inviteesExpandableListView.setAdapter(inviteesExpandableListAdapter);
+        uninvitedExpandableListView.setAdapter(uninvitedExpandableListAdapter);
+
+        inviteesExpandableListView.expandGroup(0);
+        uninvitedExpandableListView.expandGroup(0);
     }
 
     @Override
     public void uninvitePerson(String person) {
+        invitees.remove(person);
+        uninvited.add(person);
 
+        boolean uninvitedIsExpanded = uninvitedExpandableListView.isGroupExpanded(0);
+
+        // Update List Adapter/Views
+        inviteesExpandableListAdapter = new InviteeListAdapter(this.getContext(), inviteesListTitle, invitees, listener);
+        uninvitedExpandableListAdapter = new UninvitedListAdapter(this.getContext(), uninvitedListTitle, uninvited, listener);
+        inviteesExpandableListView.setAdapter(inviteesExpandableListAdapter);
+        uninvitedExpandableListView.setAdapter(uninvitedExpandableListAdapter);
+
+        inviteesExpandableListView.expandGroup(0);
+        if (uninvitedIsExpanded) {
+            uninvitedExpandableListView.expandGroup(0);
+        }
     }
 }
