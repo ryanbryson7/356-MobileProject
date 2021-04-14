@@ -145,14 +145,11 @@
 
         <Button
             android:id="@+id/messages_button"
-            android:drawableTop="@drawable/chat_bubble_icon"
+            android:drawableBottom="@drawable/chat_bubble_icon"
             android:layout_width="75dp"
             android:layout_height="75dp"
             android:background="@drawable/circular_button"
             />
 
     </LinearLayout>
-
-
-
 </LinearLayout>
