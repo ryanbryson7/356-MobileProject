@@ -5,15 +5,27 @@
     android:layout_centerHorizontal="true"
     android:orientation="horizontal">
 
-    <ImageButton
-        android:id="@+id/notification_button"
+    <LinearLayout
         android:layout_width="0dp"
         android:minWidth="75dp"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:background="@null"
-        android:paddingTop="4dp"
-        android:src="@mipmap/notifications_active" />
+        android:gravity="center"
+        android:layout_weight="1">
+        <ImageButton
+            android:id="@+id/notification_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:paddingTop="4dp"
+            android:src="@drawable/ic_notification_icon" />
+        <ImageView
+            android:id="@+id/notification_circle"
+            android:layout_width="12dp"
+            android:layout_height="12dp"
+            android:layout_marginTop="-5dp"
+            android:layout_marginLeft="-15dp"
+            android:src="@drawable/circle_red"/>
+    </LinearLayout>
 
 
     <TextView

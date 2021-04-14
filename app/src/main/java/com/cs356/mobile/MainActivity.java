@@ -8,6 +8,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.cs356.mobile.model.Data;
@@ -29,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
     Fragment currentFragment;
     TextView pageTitle;
     ImageButton notificationButton;
+    ImageView notificationCircle;
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @SuppressLint("WrongConstant")
@@ -53,7 +55,9 @@ public class MainActivity extends AppCompatActivity {
         actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
 
         notificationButton = findViewById(R.id.notification_button);
+        notificationCircle = findViewById(R.id.notification_circle);
         setNotificationStatus();
+
 
         ImageButton profileButton = findViewById(R.id.profile_button);
         pageTitle = findViewById(R.id.page_title);
@@ -110,45 +114,11 @@ public class MainActivity extends AppCompatActivity {
     public void setNotificationStatus() {
         //Set notification icon if there are notifications
         if (Data.getInstance().getNotifications().size() > 0) {
-            notificationButton.setImageDrawable(getDrawable(R.drawable.ic_notification_active));
+           notificationCircle.setVisibility(View.VISIBLE);
         }
         else {
-            notificationButton.setImageDrawable(getDrawable(R.drawable.ic_notification_icon));
+            notificationCircle.setVisibility(View.INVISIBLE);
         }
+
     }
-
-
-        //TODO: decide if we want to keep the default code
-
-        // Passing each menu ID as a set of Ids because each
-        // menu should be considered as top level destinations.
-//        AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
-//                R.id.navigation_home, R.id.navigation_create_event, R.id.navigation_calendar)
-//                .build();
-//        NavController navController = Navigation.findNavController(this, R.id.fragment_holder);
-//        NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
-//        NavigationUI.setupWithNavController(navView, navController);
-
-//    @Override
-//    public boolean onCreateOptionsMenu(Menu menu) {
-//        MenuInflater inflater = getMenuInflater();
-//        inflater.inflate(R.menu.top_menu_old, menu);
-//        return true;
-//    }
-//
-//    @Override
-//    public boolean onOptionsItemSelected(MenuItem item) {
-//        switch (item.getItemId()) {
-//            case R.id.navigation_notifications:
-//                fragmentManager.beginTransaction().replace(R.id.fragment_holder, new NotificationsFragment()).commit();
-//                return true;
-//
-//            case R.id.navigation_settings:
-//                fragmentManager.beginTransaction().replace(R.id.fragment_holder, new SettingsFragment()).commit();
-//                return true;
-//
-//            default:
-//                return super.onOptionsItemSelected(item);
-//        }
-//    }
 }

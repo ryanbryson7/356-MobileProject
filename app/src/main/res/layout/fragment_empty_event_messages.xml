@@ -49,12 +49,10 @@
         </LinearLayout>
 
         <View
-            android:id="@+id/view"
             android:layout_width="match_parent"
-            android:layout_height="2dp"
-            android:background="@android:color/black"
-            app:layout_constraintBottom_toBottomOf="@+id/linearLayout"
-            tools:layout_editor_absoluteX="10dp" />
+            android:layout_height="1dp"
+            android:layout_margin="10dp"
+            android:background="@android:color/darker_gray" />
     </LinearLayout>
 
     <TextView
