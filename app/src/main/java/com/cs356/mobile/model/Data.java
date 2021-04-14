@@ -15,17 +15,22 @@ public class Data {
     private static Data instance;
 
     /////////////////DEFAULT DATA/////////////////
-    private List<String> defaultFriendsList = new ArrayList<String>(Arrays.asList("Ryan Bryson", "Andrew Bowden", "Cosmo Cougar", "Michael Jones"));
+    private List<String> defaultFriendsList = new ArrayList<String>(Arrays.asList("Ryan Bryson", "Andrew Bowden", "Richard Parker", "Sarah Docker", "Michael Jones"));
 
     private List<String> defaultConfirmedEventInvitees = new ArrayList<String>(Arrays.asList("Ryan Bryson", "Andrew Bowden"));
-    private List<String> defaultInProgressEventInvitees = new ArrayList<String>(Arrays.asList("Johnny Test"));
+    private List<String> defaultInProgressEventInvitees = new ArrayList<String>(Arrays.asList("Johnny Test", "Richard Parker", "Sarah Docker"));
 
     private Event defaultConfirmedEvent1 = new Event("Making a Planning App", 4, 2, 2021, "Forever", "Android Studio", defaultConfirmedEventInvitees, false);
-    private Event defaultConfirmedEvent2 = new Event("Celebrating Last Day of Class", 4, 14, 2021, "7:00pm", "Apt. 320", defaultConfirmedEventInvitees, false);
-    private Event demoEvent = new Event("Ski at Sundance Resort", 4, 7, 2021, "6:30pm - 9:00pm", "Provo, Utah", defaultInProgressEventInvitees, true);
+    private Event defaultConfirmedEvent2 = new Event("Celebrating Last Day of Finals", 4, 21, 2021, "7:00pm", "Apt. 320", defaultConfirmedEventInvitees, false);
+    private Event demoEvent = new Event("Ski at Sundance Resort", 4, 24, 2021, "6:30pm - 9:00pm", "Provo, Utah", defaultInProgressEventInvitees, true);
 
-    private Notification messageNotification = new Notification("Event Reminder", defaultConfirmedEvent1.getTitle(), "Message from deez nuts", defaultConfirmedEvent1);
-    private Notification messageNotification2 = new Notification("Event Reminder", defaultConfirmedEvent2.getTitle(), "Message from deez nuts2", defaultConfirmedEvent2);
+    private Notification messageNotification = new Notification("New Message", demoEvent.getTitle(), "I am free after 6 pm on Tuesday?" +
+            " Does that work? I can update the event details. - Sarah Docker", demoEvent);
+    private String notificationBody = "'" + defaultConfirmedEvent2.getTitle() + "'" + " starts on " +
+            defaultConfirmedEvent2.getMonth() + "/" + defaultConfirmedEvent2.getDay() + "/" +
+            defaultConfirmedEvent2.getYear();
+    private Notification messageNotification2 = new Notification("Event Reminder",
+            defaultConfirmedEvent2.getTitle(), notificationBody, defaultConfirmedEvent2);
     //////////////////////////////////////////////
 
     private Data() {

@@ -34,6 +34,7 @@ public class ConfirmedEventDetailsFragment extends Fragment {
     private TextView eventTimeTextView;
     private TextView eventLocationTextView;
     private Button setToInProgressButton;
+    private Button messagesButton;
 
     public ConfirmedEventDetailsFragment(Event event) {
         this.event = event;
@@ -49,6 +50,7 @@ public class ConfirmedEventDetailsFragment extends Fragment {
         eventTimeTextView = view.findViewById(R.id.event_time);
         eventLocationTextView = view.findViewById(R.id.event_location);
         setToInProgressButton = view.findViewById(R.id.set_to_in_progress_button);
+        messagesButton = view.findViewById(R.id.messages_button);
 
         eventTitleTextView.setText(event.getTitle());
         eventDateTextView.setText(event.getDateAsString());
@@ -68,6 +70,24 @@ public class ConfirmedEventDetailsFragment extends Fragment {
 
         expandableListAdapter = new InviteeListAdapter(this.getContext(), expandableListTitle, invitees, null);
         expandableListView.setAdapter(expandableListAdapter);
+
+        messagesButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FragmentManager fragmentManager = getParentFragmentManager();
+                Fragment destinationFragment = null;
+                if (event.getTitle().equals("Ski at Sundance Resort")) {
+                    destinationFragment = new EventMessagesFragment(event);
+                }
+                else {
+                    destinationFragment = new EmptyEventMessagesFragment(event);
+                }
+                fragmentManager.beginTransaction().replace(R.id.fragment_holder,
+                        destinationFragment).commit();
+                ((MainActivity) getActivity()).setTitleText("Event Chat");
+                Data.getInstance().setSelectedEvent(event);
+            }
+        });
 
         return view;
     }

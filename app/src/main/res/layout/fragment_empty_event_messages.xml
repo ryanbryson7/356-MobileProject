@@ -39,8 +39,7 @@
                 android:textColor="@color/black"
                 android:text="@string/event_title"
                 android:textAlignment="center"
-                android:textSize="24dp"
-                android:textStyle="bold" />
+                android:textSize="24dp" />
 
             <ImageView
                 android:layout_width="wrap_content"
