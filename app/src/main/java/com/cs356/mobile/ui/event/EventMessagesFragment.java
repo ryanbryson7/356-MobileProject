@@ -21,7 +21,7 @@ public class EventMessagesFragment extends Fragment {
     private TextView eventTitle;
     private ImageView backButton;
 
-    EventMessagesFragment(Event event) {
+    public EventMessagesFragment(Event event) {
         this.event = event;
     }
 

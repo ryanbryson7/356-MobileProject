@@ -20,6 +20,7 @@ import com.cs356.mobile.R;
 import com.cs356.mobile.model.Data;
 import com.cs356.mobile.model.Notification;
 import com.cs356.mobile.ui.event.ConfirmedEventDetailsFragment;
+import com.cs356.mobile.ui.event.EventMessagesFragment;
 import com.cs356.mobile.ui.event.InProgressEventDetailsFragment;
 
 
@@ -110,6 +111,12 @@ public class NotificationsFragment extends Fragment {
             if (notification.getNotificationType().equals("Event Reminder")) {
                 fragmentDestination = new ConfirmedEventDetailsFragment(notification.getAssociatedEvent());
                 ((MainActivity) getActivity()).setTitleText("Event Details");
+                Data.getInstance().setSelectedEvent(notification.getAssociatedEvent());
+            }
+
+            else if (notification.getNotificationType().equals("New Message")) {
+                fragmentDestination = new EventMessagesFragment(notification.getAssociatedEvent());
+                ((MainActivity) getActivity()).setTitleText("Event Chat");
                 Data.getInstance().setSelectedEvent(notification.getAssociatedEvent());
             }
             Data.getInstance().removeNotification(notification);
