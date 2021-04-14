@@ -25,31 +25,39 @@ import java.util.List;
 public class HomeFragment extends Fragment implements EventListAdapter.Listener{
     private EventListAdapter.Listener listener = this;
 
-    private ExpandableListView expandableListView;
-    private ExpandableListAdapter expandableListAdapter;
+    private ExpandableListView inProgressExpandableListView;
+    private ExpandableListAdapter inProgressExpandableListAdapter;
+    private ExpandableListView confirmedExpandableListView;
+    private ExpandableListAdapter confirmedExpandableListAdapter;
     private Data data;
-    private HashMap<String, List<Event>> expandableListData;
+    private HashMap<String, List<Event>> inProgressExpandableListData;
+    private HashMap<String, List<Event>> confirmedExpandableListData;
+
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_home, container, false);
         initializeData();
 
-        expandableListView = root.findViewById(R.id.expandable_event_lists);
+        inProgressExpandableListView = root.findViewById(R.id.in_progress_event_lists);
+        confirmedExpandableListView = root.findViewById(R.id.confirmed_event_list);
 
-        expandableListAdapter = new EventListAdapter(this.getContext(), expandableListData, listener);
-        expandableListView.setAdapter(expandableListAdapter);
+        inProgressExpandableListAdapter = new EventListAdapter(this.getContext(), inProgressExpandableListData, listener);
+        confirmedExpandableListAdapter = new EventListAdapter(this.getContext(), confirmedExpandableListData, listener);
+        inProgressExpandableListView.setAdapter(inProgressExpandableListAdapter);
+        confirmedExpandableListView.setAdapter(confirmedExpandableListAdapter);
 
         return root;
     }
 
     private void initializeData() {
         data = Data.getInstance();
-        expandableListData = new HashMap<>();
+        confirmedExpandableListData = new HashMap<>();
+        inProgressExpandableListData = new HashMap<>();
 
         // Load data from Data into the expandableListData
-        expandableListData.put(getContext().getString(R.string.confirmed_events), data.getConfirmedEvents());
-        expandableListData.put(getContext().getString(R.string.in_progress_events), data.getInProgressEvents());
+        confirmedExpandableListData.put(getContext().getString(R.string.confirmed_events), data.getConfirmedEvents());
+        inProgressExpandableListData.put(getContext().getString(R.string.in_progress_events), data.getInProgressEvents());
     }
 
     @Override

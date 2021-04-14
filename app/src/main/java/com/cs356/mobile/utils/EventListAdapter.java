@@ -19,7 +19,7 @@ public class EventListAdapter extends BaseExpandableListAdapter {
     private Context context;
     private HashMap<String, List<Event>> expandableListData;
 
-    private int marginSize = 50;
+    private int marginSize = 0;
 
     public EventListAdapter(Context context, HashMap<String, List<Event>> expandableListData, Listener listener) {
         this.listener = listener;
@@ -69,10 +69,10 @@ public class EventListAdapter extends BaseExpandableListAdapter {
             convertView = inflater.inflate(R.layout.expandable_list_header, null);
         }
         // TODO: Only problem with this is the margin is blue
-        if (isExpanded)
-            convertView.setPadding(0, 0, 0, 0);
-        else
-            convertView.setPadding(0, 0, 0, marginSize);
+//        if (isExpanded)
+//            convertView.setPadding(0, 0, 0, 0);
+//        else
+//            convertView.setPadding(0, 0, 0, marginSize);
 
         TextView eventLabelView = convertView.findViewById(R.id.list_header);
 
