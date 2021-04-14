@@ -40,6 +40,11 @@
             android:textColor="@color/black"
             android:focusable="false"/>
     </RelativeLayout>
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="10dp" />
+
     <ExpandableListView
         android:theme="@style/menuItemTheme"
         android:id="@+id/expandable_uninvited_list"

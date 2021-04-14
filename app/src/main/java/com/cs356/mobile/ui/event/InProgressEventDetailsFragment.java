@@ -129,11 +129,15 @@ public class InProgressEventDetailsFragment extends Fragment implements ListList
                 if (uninvitedExpandableListView.getVisibility() == View.INVISIBLE) {
                     uninvitedExpandableListView.setVisibility(View.VISIBLE);
                     uninvitedExpandableListView.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+                    uninvitedExpandableListView.expandGroup(0);
+                    inviteesExpandableListView.expandGroup(0);
                     addInviteesButton.setText("Done");
                 }
                 else {
                     uninvitedExpandableListView.setVisibility(View.INVISIBLE);
                     uninvitedExpandableListView.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 0));
+                    uninvitedExpandableListView.collapseGroup(0);
+                    inviteesExpandableListView.collapseGroup(0);
                     addInviteesButton.setText(R.string.add_text);
                 }
             }
