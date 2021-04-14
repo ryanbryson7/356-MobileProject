@@ -31,8 +31,6 @@ import java.util.List;
 
 public class CalendarFragment extends Fragment {
     com.applandeo.materialcalendarview.CalendarView calendarView;
-    //CalendarView calendarView;
-    TextView pageTitle;
     LinearLayout eventDetailsBox;
     TextView activityText;
     TextView dateText;
@@ -157,7 +155,6 @@ public class CalendarFragment extends Fragment {
                 inProgressEvent.setEventDay(eventDay);
             }
         }
-
 
         calendarView.setEvents(eventDays);
     }

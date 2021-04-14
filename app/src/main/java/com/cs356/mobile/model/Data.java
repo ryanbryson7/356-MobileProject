@@ -131,12 +131,12 @@ public class Data {
 
     public Event findEventByEventDay(EventDay eventDay) {
         for (Event event : confirmedEvents) {
-            if (event.getEventDay().equals(eventDay)) {
+            if (event.getEventDay().getCalendar().equals(eventDay.getCalendar()) && event.getEventDay().getImageResource() == eventDay.getImageResource()) {
                 return event;
             }
         }
         for (Event event : inProgressEvents) {
-            if (event.getEventDay().equals(eventDay)) {
+            if (event.getEventDay().getCalendar().equals(eventDay.getCalendar()) && event.getEventDay().getImageResource() == eventDay.getImageResource()) {
                 return event;
             }
         }
