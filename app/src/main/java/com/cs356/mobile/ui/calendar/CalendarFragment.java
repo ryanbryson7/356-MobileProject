@@ -121,7 +121,7 @@ public class CalendarFragment extends Fragment {
         //valid event selected
         else {
             activityText.setText("No Current Events For This Day");
-            activityText.setPadding(0,40,0,0);
+            //activityText.setPadding(0,20,0,0);
             eventStatusText.setText("");
             dateText.setText("");
             timeText.setText("");
@@ -141,9 +141,7 @@ public class CalendarFragment extends Fragment {
             Calendar calendar = calendarBuilder.setDate(confirmedEvent.getYear(), confirmedEvent.getMonth() - 1, confirmedEvent.getDay()).build();
             EventDay eventDay = new EventDay(calendar, R.drawable.circle_blue);
             eventDays.add(eventDay);
-            if (confirmedEvent.getEventDay() == null) {
-                confirmedEvent.setEventDay(eventDay);
-            }
+            confirmedEvent.setEventDay(eventDay);
         }
 
         for (Event inProgressEvent : Data.getInstance().getInProgressEvents()) {
@@ -151,9 +149,7 @@ public class CalendarFragment extends Fragment {
             EventDay eventDay = new EventDay(calendar, R.drawable.circle_red);
             eventDays.add(eventDay);
 
-            if (inProgressEvent.getEventDay() == null) {
-                inProgressEvent.setEventDay(eventDay);
-            }
+            inProgressEvent.setEventDay(eventDay);
         }
 
         calendarView.setEvents(eventDays);
